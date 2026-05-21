@@ -4,7 +4,7 @@ import JsonLd from '../../components/JsonLd.astro';
 import { getCollection } from 'astro:content';
 
 const works = await getCollection('works');
-const pl = works.find(w => w.id.endsWith('absent.md'));
+const pl = works.find(w => w.id.endsWith('absence.md'));
 const { data } = pl!;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -20,14 +20,14 @@ const imageAlt = (filename: string, fallback: string) => imageLookup.get(filenam
 
     <!-- Opening -->
     <section class="reader-opening">
-      <p class="reader-series-name">Assenza &mdash; Absent</p>
+      <p class="reader-series-name">Assenza &mdash; Absence</p>
       <h1 class="reader-title">不在场</h1>
       <p class="reader-core">
         主体的流放与生命的拟像<br />
         The Exile of the Subject and the Simulacrum of Life
       </p>
       <div class="reader-opening-img">
-        <img src={`${base}/images/works/absent/absent-01.jpg`} alt={data.coverAltText || data.title} loading="eager" decoding="async" />
+        <img src={`${base}/images/works/absence/absence-01.jpg`} alt={data.coverAltText || data.title} loading="eager" decoding="async" />
       </div>
     </section>
 
@@ -49,7 +49,7 @@ const imageAlt = (filename: string, fallback: string) => imageLookup.get(filenam
 
       <div class="reader-preface-cn">
         <p>现代年轻人最隐秘的精神症状，或许是&ldquo;自己缺席了自己的生活&rdquo;。</p>
-        <p>在一个被无限滑动与算法景观吞噬的时代，我们花费海量的时间寄生在屏幕里他人的喜怒哀乐中。我们在代理的情绪中消耗清晨与黄昏，甚至连自身的欲望，也沦为对他人生活拟像的拙劣模仿。手机放下的一瞬间，现实变成了一片失重的旷野。我们在他人的生活里高朋满座，却在自己的生命现场彻底缺席（Absent）。</p>
+        <p>在一个被无限滑动与算法景观吞噬的时代，我们花费海量的时间寄生在屏幕里他人的喜怒哀乐中。我们在代理的情绪中消耗清晨与黄昏，甚至连自身的欲望，也沦为对他人生活拟像的拙劣模仿。手机放下的一瞬间，现实变成了一片失重的旷野。我们在他人的生活里高朋满座，却在自己的生命现场彻底缺席（Absence）。</p>
         <p>艺术家 Hydon BAI 的独幅版画系列《不在场》（Assenza），正是对这场当代精神异化的一场视觉微观解刻。</p>
         <p>画面中那些被孤立的购物车、空置的折叠椅、在工业电子燥点般的肌理中静默的日常媒介，不再是单纯的历史遗迹，而是现代人精神退场后的心理废墟。与这种&ldquo;生命的缺席&rdquo;形成互文的，是艺术家近乎苦行僧式的&ldquo;肉身在场&rdquo;&mdash;他所独创的 Hydon BAI Method（确定性独幅版画），要求将巨大的手工业劳动与情感密度注入亚克力板，而在经历版画机的高压压印后，原画在生成图像的瞬间便走向仪式性的毁灭。</p>
         <p>这是一场用&ldquo;物质的极端确定性&rdquo;对抗&ldquo;数字虚无&rdquo;的抵抗。BAI 创造了一个无人的剧场，每一件孤品都是一张精神的物证。他用这些将人抽离的图像向屏幕前的我们发出提问：当图像在无休止地复制，当我们在热烈地观察世界时，我们究竟把属于自己的人生，交代给了哪里？</p>
@@ -75,23 +75,23 @@ const imageAlt = (filename: string, fallback: string) => imageLookup.get(filenam
         <p>Our emotions clash vibrantly behind the screen, while in the actual room, nothing remains but two silently evacuated shells. Outside the window lies an endless stream of the world&rsquo;s spectacles; inside, the heavy weight of a life I have no idea how to live.</p>
       </div>
 
-      <!-- Absent .01 -->
+      <!-- Absence .01 -->
       <div class="work-image">
-        <img src={`${base}/images/works/absent/absent-01.jpg`} alt={imageAlt('absent-01.jpg', 'Absent .01')} loading="lazy" decoding="async" />
+        <img src={`${base}/images/works/absence/absence-01.jpg`} alt={imageAlt('absence-01.jpg', 'Absence .01')} loading="lazy" decoding="async" />
       </div>
-      <p class="work-title">Absent .01 <span class="work-title-en">2018, Monotype on paper</span></p>
+      <p class="work-title">Absence .01 <span class="work-title-en">2018, Monotype on paper</span></p>
 
-      <!-- Absent .02 -->
+      <!-- Absence .02 -->
       <div class="work-image">
-        <img src={`${base}/images/works/absent/absent-02.jpg`} alt={imageAlt('absent-02.jpg', 'Absent .02')} loading="lazy" decoding="async" />
+        <img src={`${base}/images/works/absence/absence-02.jpg`} alt={imageAlt('absence-02.jpg', 'Absence .02')} loading="lazy" decoding="async" />
       </div>
-      <p class="work-title">Absent .02 <span class="work-title-en">2018, Monotype on paper</span></p>
+      <p class="work-title">Absence .02 <span class="work-title-en">2018, Monotype on paper</span></p>
 
-      <!-- Absent .03 -->
+      <!-- Absence .03 -->
       <div class="work-image">
-        <img src={`${base}/images/works/absent/absent-03.jpg`} alt={imageAlt('absent-03.jpg', 'Absent .03')} loading="lazy" decoding="async" />
+        <img src={`${base}/images/works/absence/absence-03.jpg`} alt={imageAlt('absence-03.jpg', 'Absence .03')} loading="lazy" decoding="async" />
       </div>
-      <p class="work-title">Absent .03 <span class="work-title-en">2018, Monotype on paper</span></p>
+      <p class="work-title">Absence .03 <span class="work-title-en">2018, Monotype on paper</span></p>
     </section>
 
     <div class="reader-rule"></div>
@@ -105,23 +105,23 @@ const imageAlt = (filename: string, fallback: string) => imageLookup.get(filenam
         <p>Having grown accustomed to witnessing distant migrations on a screen, I discover when it is finally time to depart that I have long lost the steering wheel of my own reality. The mind is glutted with the noise of the world, while the vital core that propels the body forward has already been crushed out of shape within an unnoticed emptiness. Immersed in imitating the desires of others, we erect the sheer scaffolding of a life, only to misplace the very seat where the self belongs.</p>
       </div>
 
-      <!-- Absent .04 -->
+      <!-- Absence .04 -->
       <div class="work-image">
-        <img src={`${base}/images/works/absent/absent-04.jpg`} alt={imageAlt('absent-04.jpg', 'Absent .04')} loading="lazy" decoding="async" />
+        <img src={`${base}/images/works/absence/absence-04.jpg`} alt={imageAlt('absence-04.jpg', 'Absence .04')} loading="lazy" decoding="async" />
       </div>
-      <p class="work-title">Absent .04 <span class="work-title-en">2018, Monotype on paper</span></p>
+      <p class="work-title">Absence .04 <span class="work-title-en">2018, Monotype on paper</span></p>
 
-      <!-- Absent .05 -->
+      <!-- Absence .05 -->
       <div class="work-image">
-        <img src={`${base}/images/works/absent/absent-05.jpg`} alt={imageAlt('absent-05.jpg', 'Absent .05')} loading="lazy" decoding="async" />
+        <img src={`${base}/images/works/absence/absence-05.jpg`} alt={imageAlt('absence-05.jpg', 'Absence .05')} loading="lazy" decoding="async" />
       </div>
-      <p class="work-title">Absent .05 <span class="work-title-en">2018, Monotype on paper</span></p>
+      <p class="work-title">Absence .05 <span class="work-title-en">2018, Monotype on paper</span></p>
 
-      <!-- Absent .06 -->
+      <!-- Absence .06 -->
       <div class="work-image">
-        <img src={`${base}/images/works/absent/absent-06.jpg`} alt={imageAlt('absent-06.jpg', 'Absent .06')} loading="lazy" decoding="async" />
+        <img src={`${base}/images/works/absence/absence-06.jpg`} alt={imageAlt('absence-06.jpg', 'Absence .06')} loading="lazy" decoding="async" />
       </div>
-      <p class="work-title">Absent .06 <span class="work-title-en">2018, Monotype on paper</span></p>
+      <p class="work-title">Absence .06 <span class="work-title-en">2018, Monotype on paper</span></p>
     </section>
 
     <div class="reader-rule"></div>
@@ -136,9 +136,9 @@ const imageAlt = (filename: string, fallback: string) => imageLookup.get(filenam
         <p>Each of us pushes an empty cart, drifting blindly through the currents of our era, piling it high with spoon-fed desires, yet utterly devoid of the self.</p>
       </div>
       <div class="work-image">
-        <img src={`${base}/images/works/absent/absent-07.jpg`} alt={imageAlt('absent-07.jpg', 'Absent .07')} loading="lazy" decoding="async" />
+        <img src={`${base}/images/works/absence/absence-07.jpg`} alt={imageAlt('absence-07.jpg', 'Absence .07')} loading="lazy" decoding="async" />
       </div>
-      <p class="work-title">Absent .07 <span class="work-title-en">2018, Monotype on paper</span></p>
+      <p class="work-title">Absence .07 <span class="work-title-en">2018, Monotype on paper</span></p>
     </section>
 
     <div class="reader-rule"></div>
@@ -153,9 +153,9 @@ const imageAlt = (filename: string, fallback: string) => imageLookup.get(filenam
         <p>All the shields and shelters remain on site, yet the physical body meant to be protected has long since surrendered within the virtual ecstasy of the screen.</p>
       </div>
       <div class="work-image">
-        <img src={`${base}/images/works/absent/absent-08.jpg`} alt={imageAlt('absent-08.jpg', 'Absent .08')} loading="lazy" decoding="async" />
+        <img src={`${base}/images/works/absence/absence-08.jpg`} alt={imageAlt('absence-08.jpg', 'Absence .08')} loading="lazy" decoding="async" />
       </div>
-      <p class="work-title">Absent .08 <span class="work-title-en">2018, Monotype on paper</span></p>
+      <p class="work-title">Absence .08 <span class="work-title-en">2018, Monotype on paper</span></p>
     </section>
 
     <div class="reader-rule"></div>
@@ -170,9 +170,9 @@ const imageAlt = (filename: string, fallback: string) => imageLookup.get(filenam
         <p>It signals its relentless presence at every ordinary street corner, cordoning off the boundaries of reality. We are used to looking past it, until we use it to cage our own souls.</p>
       </div>
       <div class="work-image">
-        <img src={`${base}/images/works/absent/absent-09.jpg`} alt={imageAlt('absent-09.jpg', 'Absent .09')} loading="lazy" decoding="async" />
+        <img src={`${base}/images/works/absence/absence-09.jpg`} alt={imageAlt('absence-09.jpg', 'Absence .09')} loading="lazy" decoding="async" />
       </div>
-      <p class="work-title">Absent .09 <span class="work-title-en">2018, Monotype on paper</span></p>
+      <p class="work-title">Absence .09 <span class="work-title-en">2018, Monotype on paper</span></p>
     </section>
 
     <div class="reader-rule"></div>
@@ -186,9 +186,9 @@ const imageAlt = (filename: string, fallback: string) => imageLookup.get(filenam
         <p>The microphones are set, the spotlight is on, yet the &lsquo;self&rsquo;&mdash;the one who should express, control, and comment on life&mdash;remains stubbornly backstage within the landscape of the algorithm.</p>
       </div>
       <div class="work-image">
-        <img src={`${base}/images/works/absent/absent-10.jpg`} alt={imageAlt('absent-10.jpg', 'Absent .10')} loading="lazy" decoding="async" />
+        <img src={`${base}/images/works/absence/absence-10.jpg`} alt={imageAlt('absence-10.jpg', 'Absence .10')} loading="lazy" decoding="async" />
       </div>
-      <p class="work-title">Absent .10 <span class="work-title-en">2018, Monotype on paper</span></p>
+      <p class="work-title">Absence .10 <span class="work-title-en">2018, Monotype on paper</span></p>
     </section>
 
     <div class="reader-rule"></div>
@@ -202,9 +202,9 @@ const imageAlt = (filename: string, fallback: string) => imageLookup.get(filenam
         <p>Even a gecko strives to cast two shadows. Meanwhile, behind the screen, we allow the &lsquo;real shadow&rsquo;&mdash;the one meant to build our own lives&mdash;to remain utterly absent within the virtual wilderness.</p>
       </div>
       <div class="work-image">
-        <img src={`${base}/images/works/absent/absent-11.jpg`} alt={imageAlt('absent-11.jpg', 'Absent .11')} loading="lazy" decoding="async" />
+        <img src={`${base}/images/works/absence/absence-11.jpg`} alt={imageAlt('absence-11.jpg', 'Absence .11')} loading="lazy" decoding="async" />
       </div>
-      <p class="work-title">Absent .11 <span class="work-title-en">2018, Monotype on paper</span></p>
+      <p class="work-title">Absence .11 <span class="work-title-en">2018, Monotype on paper</span></p>
     </section>
 
     <div class="reader-rule"></div>
@@ -219,9 +219,9 @@ const imageAlt = (filename: string, fallback: string) => imageLookup.get(filenam
         <p>Every day, thousands of high-density information bullets pierce our consciousness. They roar through the virtual void, only to pin us down into an immobile, static shell within actual reality.</p>
       </div>
       <div class="work-image">
-        <img src={`${base}/images/works/absent/absent-12.jpg`} alt={imageAlt('absent-12.jpg', 'Absent .12')} loading="lazy" decoding="async" />
+        <img src={`${base}/images/works/absence/absence-12.jpg`} alt={imageAlt('absence-12.jpg', 'Absence .12')} loading="lazy" decoding="async" />
       </div>
-      <p class="work-title">Absent .12 <span class="work-title-en">2018, Monotype on paper</span></p>
+      <p class="work-title">Absence .12 <span class="work-title-en">2018, Monotype on paper</span></p>
     </section>
 
     <div class="reader-end"></div>
