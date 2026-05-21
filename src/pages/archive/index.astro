@@ -33,11 +33,13 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
               <video
                 src={`${base}${entry.data.video}`}
                 poster={`${base}${entry.data.image}`}
+                aria-label={`${entry.data.title} live photo`}
                 muted
                 loop
                 playsinline
                 preload="none"
               ></video>
+              <span class="video-control" aria-hidden="true">Play</span>
             ) : (
               <img
                 src={`${base}${entry.data.image}`}
@@ -148,6 +150,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     position: relative;
   }
 
+  .has-video {
+    cursor: pointer;
+  }
+
   .card-image img {
     width: 100%;
     height: 100%;
@@ -165,6 +171,24 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   .archive-card:hover .card-image img,
   .archive-card:hover .card-image video {
     transform: scale(1.03);
+  }
+
+  .video-control {
+    position: absolute;
+    right: 0.5rem;
+    bottom: 0.5rem;
+    z-index: 2;
+    display: none;
+    padding: 0.2rem 0.45rem;
+    background: rgb(250 250 250 / 0.9);
+    color: var(--color-text);
+    font-size: 0.625rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .has-video.is-playing .video-control {
+    opacity: 0.65;
   }
 
   .card-header {
@@ -230,6 +254,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       grid-template-columns: repeat(2, 1fr);
       gap: var(--spacing-md);
     }
+
+    .video-control {
+      display: inline-block;
+    }
   }
 
   @media (max-width: 480px) {
@@ -242,15 +270,32 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 <script>
   document.querySelectorAll('.has-video').forEach((container) => {
     const video = container.querySelector('video');
+    const control = container.querySelector('.video-control');
     if (!video) return;
 
-    container.addEventListener('mouseenter', () => {
-      video.play();
-    });
+    const play = () => {
+      video.play().then(() => {
+        container.classList.add('is-playing');
+        if (control) control.textContent = 'Pause';
+      }).catch(() => {});
+    };
 
-    container.addEventListener('mouseleave', () => {
+    const stop = () => {
       video.pause();
       video.currentTime = 0;
+      container.classList.remove('is-playing');
+      if (control) control.textContent = 'Play';
+    };
+
+    container.addEventListener('mouseenter', play);
+    container.addEventListener('mouseleave', stop);
+
+    container.addEventListener('click', () => {
+      if (video.paused) {
+        play();
+      } else {
+        stop();
+      }
     });
   });
 </script>

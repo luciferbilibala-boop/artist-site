@@ -20,7 +20,15 @@ function isActive(href: string): boolean {
 
 <header class="nav-header">
   <a href={`${base}/`} class="nav-logo">BAI</a>
-  <nav>
+  <button
+    class="nav-toggle"
+    type="button"
+    aria-expanded="false"
+    aria-controls="site-nav"
+  >
+    Menu
+  </button>
+  <nav id="site-nav" class="site-nav">
     <ul class="nav-list">
       {links.map(link => (
         <li>
@@ -58,6 +66,10 @@ function isActive(href: string): boolean {
     text-transform: uppercase;
   }
 
+  .nav-toggle {
+    display: none;
+  }
+
   .nav-list {
     display: flex;
     gap: 2rem;
@@ -80,14 +92,71 @@ function isActive(href: string): boolean {
   @media (max-width: 768px) {
     .nav-header {
       padding: 1rem var(--spacing-sm);
+      mix-blend-mode: normal;
+      color: var(--color-text);
+      background: color-mix(in srgb, var(--color-bg) 92%, transparent);
+      border-bottom: 1px solid var(--color-border);
+      backdrop-filter: blur(16px);
+    }
+
+    .nav-toggle {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .site-nav {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      display: none;
+      background: var(--color-bg);
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--spacing-md) var(--spacing-sm);
+    }
+
+    .nav-header.is-open .site-nav {
+      display: block;
     }
 
     .nav-list {
-      gap: 1rem;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--spacing-md) var(--spacing-sm);
     }
 
     .nav-link {
-      font-size: 0.7rem;
+      display: block;
+      font-size: 0.8125rem;
+      opacity: 0.7;
     }
   }
 </style>
+
+<script>
+  const navHeader = document.querySelector('.nav-header');
+  const navToggle = document.querySelector('.nav-toggle');
+
+  if (navHeader && navToggle) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = navHeader.classList.toggle('is-open');
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    navHeader.querySelectorAll('.nav-link').forEach((link) => {
+      link.addEventListener('click', () => {
+        navHeader.classList.remove('is-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>
