@@ -1,0 +1,112 @@
+---
+import Layout from '../layouts/Base.astro';
+---
+
+<Layout
+  title="Contact"
+  description="联系方式"
+>
+  <main class="contact-page page-padding">
+    <header class="page-header">
+      <h1 class="page-title">Contact</h1>
+    </header>
+
+    <div class="contact-content">
+      <p class="intro-text">
+        For studio visits, exhibition inquiries, press, or works availability — please reach out.
+      </p>
+
+      <div class="contact-list">
+        <div class="contact-item">
+          <span class="contact-label">Email</span>
+          <a href="mailto:hydon.baihaidong@gmail.com" class="contact-value">
+            hydon.baihaidong@gmail.com
+          </a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Instagram</span>
+          <a href="https://instagram.com/hydon_bai" class="contact-value" target="_blank" rel="noopener noreferrer">
+            @hydon_bai
+          </a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">小红书</span>
+          <span class="contact-value">Hydon_Bai</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">小红书</span>
+          <span class="contact-value">Art_hydon</span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .contact-page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .page-header {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .page-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    letter-spacing: 0.06em;
+  }
+
+  .intro-text {
+    font-size: 1rem;
+    max-width: 400px;
+    line-height: 1.8;
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .contact-list {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .contact-label {
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+  }
+
+  .contact-value {
+    font-size: 1.125rem;
+    letter-spacing: 0.03em;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: var(--color-border);
+  }
+
+  .contact-value:hover {
+    text-decoration-color: var(--color-text);
+    opacity: 1;
+  }
+
+  .studio-address {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    line-height: 1.8;
+  }
+</style>

@@ -1,0 +1,542 @@
+---
+import Layout from '../../layouts/Base.astro';
+import JsonLd from '../../components/JsonLd.astro';
+import { getCollection } from 'astro:content';
+
+const works = await getCollection('works');
+const pl = works.find(w => w.id.endsWith('absent.md'));
+const { data } = pl!;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const imageLookup = new Map();
+data.images?.forEach(img => imageLookup.set(img.src.split('/').pop(), img));
+const imageAlt = (filename: string, fallback: string) => imageLookup.get(filename)?.altText || fallback;
+---
+
+<Layout title="不在场 — Works" description={data.subtitle}>
+  <JsonLd slot="head" data={data} />
+  <main class="reader">
+    <a href={`${base}/works`} class="reader-back">&larr; Works</a>
+
+    <!-- Opening -->
+    <section class="reader-opening">
+      <p class="reader-series-name">Assenza &mdash; Absent</p>
+      <h1 class="reader-title">不在场</h1>
+      <p class="reader-core">
+        主体的流放与生命的拟像<br />
+        The Exile of the Subject and the Simulacrum of Life
+      </p>
+      <div class="reader-opening-img">
+        <img src={`${base}/images/works/absent/absent-01.jpg`} alt={data.coverAltText || data.title} loading="eager" decoding="async" />
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="reader-notes">
+      <h2 class="notes-heading">About</h2>
+      <div class="notes-list">
+        <span>Monotype 独幅版画</span>
+        <span>Subject Exile 主体流放</span>
+        <span>Simulacrum 拟像</span>
+        <span>Digital Nihilism 数字虚无</span>
+        <span>Hydon BAI Method</span>
+      </div>
+    </section>
+
+    <!-- Exhibition Preface -->
+    <section class="reader-preface">
+      <h2 class="preface-heading">展览前言</h2>
+
+      <div class="reader-preface-cn">
+        <p>现代年轻人最隐秘的精神症状，或许是&ldquo;自己缺席了自己的生活&rdquo;。</p>
+        <p>在一个被无限滑动与算法景观吞噬的时代，我们花费海量的时间寄生在屏幕里他人的喜怒哀乐中。我们在代理的情绪中消耗清晨与黄昏，甚至连自身的欲望，也沦为对他人生活拟像的拙劣模仿。手机放下的一瞬间，现实变成了一片失重的旷野。我们在他人的生活里高朋满座，却在自己的生命现场彻底缺席（Absent）。</p>
+        <p>艺术家 Hydon BAI 的独幅版画系列《不在场》（Assenza），正是对这场当代精神异化的一场视觉微观解刻。</p>
+        <p>画面中那些被孤立的购物车、空置的折叠椅、在工业电子燥点般的肌理中静默的日常媒介，不再是单纯的历史遗迹，而是现代人精神退场后的心理废墟。与这种&ldquo;生命的缺席&rdquo;形成互文的，是艺术家近乎苦行僧式的&ldquo;肉身在场&rdquo;&mdash;他所独创的 Hydon BAI Method（确定性独幅版画），要求将巨大的手工业劳动与情感密度注入亚克力板，而在经历版画机的高压压印后，原画在生成图像的瞬间便走向仪式性的毁灭。</p>
+        <p>这是一场用&ldquo;物质的极端确定性&rdquo;对抗&ldquo;数字虚无&rdquo;的抵抗。BAI 创造了一个无人的剧场，每一件孤品都是一张精神的物证。他用这些将人抽离的图像向屏幕前的我们发出提问：当图像在无休止地复制，当我们在热烈地观察世界时，我们究竟把属于自己的人生，交代给了哪里？</p>
+      </div>
+
+      <div class="reader-preface-en">
+        <p>Perhaps the most insidious spiritual symptom of the contemporary generation is the &ldquo;total absence from one&rsquo;s own life.&rdquo;</p>
+        <p>In an era consumed by infinite scrolling and algorithmic spectacles, we spend an immense amount of time parasitizing the joys and sorrows of others displayed on our screens. We expend our dawns and dusks on delegated emotions; even our desires have degenerated into clumsy imitations of the simulacra of other people&rsquo;s lives. The moment the smartphone is put down, reality collapses into a weightless wilderness. We are surrounded by crowded banquets in other people&rsquo;s narratives, yet entirely absent from the actual site of our own existence.</p>
+        <p>Artist Hydon BAI&rsquo;s monotype series, Assenza (Absence), serves as a precise visual dissection of this contemporary spiritual alienation.</p>
+        <p>The isolated shopping carts, the vacant folding chairs, and the mundane media silenced within textures reminiscent of industrial electronic noise are no longer mere historical remnants. Instead, they are the psychological ruins left behind by the withdrawal of the modern spirit. Paradoxically mirroring this &ldquo;absence of life&rdquo; is the artist&rsquo;s almost ascetic &ldquo;somatic presence.&rdquo; His proprietary technique, the Hydon BAI Method (Deterministic Monotype), demands that a massive volume of manual labor and emotional density be infused into an acrylic plate. Yet, upon undergoing the high-pressure matrix of the printing press, the original drawing faces ritual destruction at the exact moment the image is born.</p>
+        <p>This is a resistance that deploys the &ldquo;absolute determinism of materiality&rdquo; against &ldquo;digital nihilism.&rdquo; BAI constructs an empty theater where each unique, unrepeatable print stands as a piece of spiritual evidence. Through these images purged of human figures, he confronts us behind the screen with a vital question: As images replicate endlessly and we fervently observe the world, where exactly have we abandoned the one life that truly belongs to us?</p>
+      </div>
+    </section>
+
+    <div class="reader-rule"></div>
+
+    <!-- Group I -->
+    <section class="reader-group">
+      <div class="group-text-cn">
+        <p>我们的情绪在屏幕里热闹地对峙，而现实的房间里，只剩下两具无声退场的空壳。窗外是全世界源源不断的景观，窗内是我不知该如何交代的一生。</p>
+      </div>
+      <div class="group-text-en">
+        <p>Our emotions clash vibrantly behind the screen, while in the actual room, nothing remains but two silently evacuated shells. Outside the window lies an endless stream of the world&rsquo;s spectacles; inside, the heavy weight of a life I have no idea how to live.</p>
+      </div>
+
+      <!-- Absent .01 -->
+      <div class="work-image">
+        <img src={`${base}/images/works/absent/absent-01.jpg`} alt={imageAlt('absent-01.jpg', 'Absent .01')} loading="lazy" decoding="async" />
+      </div>
+      <p class="work-title">Absent .01 <span class="work-title-en">2018, Monotype on paper</span></p>
+
+      <!-- Absent .02 -->
+      <div class="work-image">
+        <img src={`${base}/images/works/absent/absent-02.jpg`} alt={imageAlt('absent-02.jpg', 'Absent .02')} loading="lazy" decoding="async" />
+      </div>
+      <p class="work-title">Absent .02 <span class="work-title-en">2018, Monotype on paper</span></p>
+
+      <!-- Absent .03 -->
+      <div class="work-image">
+        <img src={`${base}/images/works/absent/absent-03.jpg`} alt={imageAlt('absent-03.jpg', 'Absent .03')} loading="lazy" decoding="async" />
+      </div>
+      <p class="work-title">Absent .03 <span class="work-title-en">2018, Monotype on paper</span></p>
+    </section>
+
+    <div class="reader-rule"></div>
+
+    <!-- Group II -->
+    <section class="reader-group">
+      <div class="group-text-cn">
+        <p>习惯了在屏幕里目睹远方的迁徙，轮到自己出发时，才发现早已丧失了指引现实的方向。大脑塞满了世界的噪音，而支撑肉身前进的内核，早已在无人察觉的虚无中被碾至变形。我们模仿着别人的欲望，搭建起生活的骨架，却唯独弄丢了可以安放自我的坐席。</p>
+      </div>
+      <div class="group-text-en">
+        <p>Having grown accustomed to witnessing distant migrations on a screen, I discover when it is finally time to depart that I have long lost the steering wheel of my own reality. The mind is glutted with the noise of the world, while the vital core that propels the body forward has already been crushed out of shape within an unnoticed emptiness. Immersed in imitating the desires of others, we erect the sheer scaffolding of a life, only to misplace the very seat where the self belongs.</p>
+      </div>
+
+      <!-- Absent .04 -->
+      <div class="work-image">
+        <img src={`${base}/images/works/absent/absent-04.jpg`} alt={imageAlt('absent-04.jpg', 'Absent .04')} loading="lazy" decoding="async" />
+      </div>
+      <p class="work-title">Absent .04 <span class="work-title-en">2018, Monotype on paper</span></p>
+
+      <!-- Absent .05 -->
+      <div class="work-image">
+        <img src={`${base}/images/works/absent/absent-05.jpg`} alt={imageAlt('absent-05.jpg', 'Absent .05')} loading="lazy" decoding="async" />
+      </div>
+      <p class="work-title">Absent .05 <span class="work-title-en">2018, Monotype on paper</span></p>
+
+      <!-- Absent .06 -->
+      <div class="work-image">
+        <img src={`${base}/images/works/absent/absent-06.jpg`} alt={imageAlt('absent-06.jpg', 'Absent .06')} loading="lazy" decoding="async" />
+      </div>
+      <p class="work-title">Absent .06 <span class="work-title-en">2018, Monotype on paper</span></p>
+    </section>
+
+    <div class="reader-rule"></div>
+
+    <!-- Work .07 -->
+    <section class="reader-work">
+      <p class="work-title-main">过度预装的欲望 <span class="work-title-en">Preloaded Desire</span></p>
+      <div class="work-text">
+        <p>每个人都有一辆空的推车，在时代的洪流里盲目地走，里面装满了被灌输的欲望，唯独没有自己。</p>
+      </div>
+      <div class="work-text-en">
+        <p>Each of us pushes an empty cart, drifting blindly through the currents of our era, piling it high with spoon-fed desires, yet utterly devoid of the self.</p>
+      </div>
+      <div class="work-image">
+        <img src={`${base}/images/works/absent/absent-07.jpg`} alt={imageAlt('absent-07.jpg', 'Absent .07')} loading="lazy" decoding="async" />
+      </div>
+      <p class="work-title">Absent .07 <span class="work-title-en">2018, Monotype on paper</span></p>
+    </section>
+
+    <div class="reader-rule"></div>
+
+    <!-- Work .08 -->
+    <section class="reader-work">
+      <p class="work-title-main">无能为力 <span class="work-title-en">Surrendered</span></p>
+      <div class="work-text">
+        <p>所有的媒介和保护都还在现场，但需要被庇护的肉身，早已在屏幕的虚拟高潮里，彻底缴械。</p>
+      </div>
+      <div class="work-text-en">
+        <p>All the shields and shelters remain on site, yet the physical body meant to be protected has long since surrendered within the virtual ecstasy of the screen.</p>
+      </div>
+      <div class="work-image">
+        <img src={`${base}/images/works/absent/absent-08.jpg`} alt={imageAlt('absent-08.jpg', 'Absent .08')} loading="lazy" decoding="async" />
+      </div>
+      <p class="work-title">Absent .08 <span class="work-title-en">2018, Monotype on paper</span></p>
+    </section>
+
+    <div class="reader-rule"></div>
+
+    <!-- Work .09 -->
+    <section class="reader-work">
+      <p class="work-title-main">无形心理边界 <span class="work-title-en">Invisible Boundary</span></p>
+      <div class="work-text">
+        <p>它高频地出现在每一个日常的街角，隔开现实的边界。我们习惯了对此视而不见，直到我们也用它圈禁了自己的灵魂。</p>
+      </div>
+      <div class="work-text-en">
+        <p>It signals its relentless presence at every ordinary street corner, cordoning off the boundaries of reality. We are used to looking past it, until we use it to cage our own souls.</p>
+      </div>
+      <div class="work-image">
+        <img src={`${base}/images/works/absent/absent-09.jpg`} alt={imageAlt('absent-09.jpg', 'Absent .09')} loading="lazy" decoding="async" />
+      </div>
+      <p class="work-title">Absent .09 <span class="work-title-en">2018, Monotype on paper</span></p>
+    </section>
+
+    <div class="reader-rule"></div>
+
+    <!-- Work .10 -->
+    <section class="reader-work">
+      <div class="work-text">
+        <p>麦克风已就位，舞台灯光已打亮，但可以去表达、去掌控、去对当下的生活发表看法的那个"自我"，却在算法的景观里，迟迟不肯上台。</p>
+      </div>
+      <div class="work-text-en">
+        <p>The microphones are set, the spotlight is on, yet the &lsquo;self&rsquo;&mdash;the one who should express, control, and comment on life&mdash;remains stubbornly backstage within the landscape of the algorithm.</p>
+      </div>
+      <div class="work-image">
+        <img src={`${base}/images/works/absent/absent-10.jpg`} alt={imageAlt('absent-10.jpg', 'Absent .10')} loading="lazy" decoding="async" />
+      </div>
+      <p class="work-title">Absent .10 <span class="work-title-en">2018, Monotype on paper</span></p>
+    </section>
+
+    <div class="reader-rule"></div>
+
+    <!-- Work .11 -->
+    <section class="reader-work">
+      <div class="work-text">
+        <p>哪怕是一只壁虎，也在竭力建立两个影子。而屏幕前的我们，却任由那个本该构建自己人生的"真实影子"，在虚拟的旷野里，彻底不在场。</p>
+      </div>
+      <div class="work-text-en">
+        <p>Even a gecko strives to cast two shadows. Meanwhile, behind the screen, we allow the &lsquo;real shadow&rsquo;&mdash;the one meant to build our own lives&mdash;to remain utterly absent within the virtual wilderness.</p>
+      </div>
+      <div class="work-image">
+        <img src={`${base}/images/works/absent/absent-11.jpg`} alt={imageAlt('absent-11.jpg', 'Absent .11')} loading="lazy" decoding="async" />
+      </div>
+      <p class="work-title">Absent .11 <span class="work-title-en">2018, Monotype on paper</span></p>
+    </section>
+
+    <div class="reader-rule"></div>
+
+    <!-- Work .12 -->
+    <section class="reader-work">
+      <p class="work-title-main">隐形的致命一击 <span class="work-title-en">Invisible Lethal Strike</span></p>
+      <div class="work-text">
+        <p>每天有成千上万颗高密度的信息子弹，横穿我们的精神。它们在虚拟中呼啸而过，却把我们在真实的现实里，钉死成一具无法动弹的静止躯壳。</p>
+      </div>
+      <div class="work-text-en">
+        <p>Every day, thousands of high-density information bullets pierce our consciousness. They roar through the virtual void, only to pin us down into an immobile, static shell within actual reality.</p>
+      </div>
+      <div class="work-image">
+        <img src={`${base}/images/works/absent/absent-12.jpg`} alt={imageAlt('absent-12.jpg', 'Absent .12')} loading="lazy" decoding="async" />
+      </div>
+      <p class="work-title">Absent .12 <span class="work-title-en">2018, Monotype on paper</span></p>
+    </section>
+
+    <div class="reader-end"></div>
+  </main>
+</Layout>
+
+<style>
+  .reader {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: calc(var(--spacing-xl) + 2rem) var(--spacing-md) var(--spacing-xl);
+    font-family: var(--font-serif);
+  }
+
+  .reader-back {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+    display: inline-block;
+    margin-bottom: var(--spacing-md);
+  }
+
+  /* Opening */
+  .reader-opening {
+    margin-bottom: calc(var(--spacing-xl) + 2rem);
+  }
+
+  .reader-series-name {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .reader-title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    margin-bottom: var(--spacing-md);
+    font-family: var(--font-serif);
+    color: var(--color-text);
+  }
+
+  .reader-core {
+    max-width: 680px;
+    font-size: 1rem;
+    line-height: 1.9;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .reader-opening-img {
+    margin: var(--spacing-md) calc(-1 * var(--spacing-md)) 0;
+  }
+
+  .reader-opening-img img {
+    width: 100%;
+    display: block;
+    background: #eaeaea;
+  }
+
+  /* About notes */
+  .reader-notes {
+    max-width: 680px;
+    margin: 0 auto calc(var(--spacing-xl) + 2rem);
+    border-left: 1px solid var(--color-border);
+    padding: var(--spacing-xs) 0 var(--spacing-xs) var(--spacing-lg);
+  }
+
+  .notes-heading {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-sm);
+    font-weight: 400;
+  }
+
+  .notes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .notes-list span {
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+  }
+
+  /* Preface */
+  .reader-preface {
+    max-width: 680px;
+    margin: 0 auto var(--spacing-xl);
+  }
+
+  .preface-heading {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-md);
+    font-weight: 400;
+  }
+
+  .reader-preface-cn {
+    font-size: 1rem;
+    line-height: 1.95;
+    letter-spacing: 0.03em;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .reader-preface-cn p {
+    margin-bottom: var(--spacing-sm);
+    text-indent: 2em;
+  }
+
+  .reader-preface-cn p:first-child {
+    text-indent: 0;
+  }
+
+  .reader-preface-en {
+    font-size: 0.8125rem;
+    line-height: 1.85;
+    letter-spacing: 0.02em;
+    color: var(--color-text-muted);
+  }
+
+  .reader-preface-en p {
+    margin-bottom: 0.65rem;
+  }
+
+  /* Group */
+  .reader-group {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .group-text-cn {
+    max-width: 680px;
+    margin: 0 auto var(--spacing-md);
+    font-size: 1rem;
+    line-height: 1.9;
+    letter-spacing: 0.03em;
+    color: var(--color-text);
+  }
+
+  .group-text-cn p {
+    text-indent: 2em;
+    margin-bottom: 0;
+  }
+
+  .group-text-cn p:first-child {
+    text-indent: 0;
+  }
+
+  .group-text-en {
+    max-width: 680px;
+    margin: 0 auto var(--spacing-lg);
+    font-size: 0.8125rem;
+    line-height: 1.85;
+    letter-spacing: 0.02em;
+    color: var(--color-text-muted);
+  }
+
+  .group-text-en p {
+    margin-bottom: 0;
+  }
+
+  /* Works */
+  .work-image {
+    margin: 0 calc(-1 * var(--spacing-md)) var(--spacing-lg);
+  }
+
+  .work-image img {
+    width: 100%;
+    display: block;
+    background: #eaeaea;
+  }
+
+  .work-title {
+    max-width: 680px;
+    margin: 0 auto var(--spacing-lg);
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    letter-spacing: 0.04em;
+    color: var(--color-text);
+    font-weight: 400;
+  }
+
+  .work-title-en {
+    font-weight: 300;
+    opacity: 0.45;
+    font-size: 0.9375rem;
+  }
+
+  /* Standalone work text */
+  .work-text {
+    max-width: 680px;
+    margin: 0 auto var(--spacing-xs);
+    font-size: 1rem;
+    line-height: 1.9;
+    letter-spacing: 0.03em;
+    color: var(--color-text);
+  }
+
+  .work-text p {
+    text-indent: 2em;
+    margin-bottom: 0;
+  }
+
+  .work-text p:first-child {
+    text-indent: 0;
+  }
+
+  /* Standalone work title */
+  .work-title-main {
+    max-width: 680px;
+    margin: 0 auto var(--spacing-xs);
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    letter-spacing: 0.04em;
+    color: var(--color-text);
+    font-weight: 400;
+  }
+
+  .work-text-en {
+    max-width: 680px;
+    margin: 0 auto var(--spacing-lg);
+    font-size: 0.8125rem;
+    line-height: 1.85;
+    letter-spacing: 0.02em;
+    color: var(--color-text-muted);
+  }
+
+  .work-text-en p {
+    margin-bottom: 0;
+  }
+
+  /* Dividers */
+  .reader-rule {
+    max-width: 680px;
+    margin: var(--spacing-lg) auto;
+    height: 1px;
+    background: var(--color-border);
+    opacity: 0.4;
+  }
+
+  .reader-end {
+    max-width: 680px;
+    margin: calc(var(--spacing-xl) + 2rem) auto 0;
+    text-align: center;
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .reader {
+      padding: calc(var(--spacing-lg) + 3rem) var(--spacing-sm) var(--spacing-lg);
+    }
+
+    .reader-opening {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .reader-title {
+      font-size: clamp(2rem, 8vw, 2.75rem);
+    }
+
+    .reader-opening-img,
+    .work-image {
+      margin-left: calc(-1 * var(--spacing-sm));
+      margin-right: calc(-1 * var(--spacing-sm));
+    }
+
+    .reader-preface,
+    .reader-notes,
+    .group-text-cn,
+    .group-text-en,
+    .reader-rule,
+    .work-title {
+      max-width: 100%;
+    }
+
+    .reader-notes {
+      padding-left: var(--spacing-md);
+    }
+
+    .work-title {
+      font-size: 1rem;
+    }
+
+    .work-title-main {
+      font-size: 1.1rem;
+    }
+
+    .work-text,
+    .work-text-en,
+    .group-text-cn,
+    .reader-preface-cn {
+      max-width: 100%;
+    }
+
+    .group-text-cn,
+    .reader-preface-cn,
+    .work-text {
+      font-size: 0.9375rem;
+    }
+  }
+</style>

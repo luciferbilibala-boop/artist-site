@@ -1,0 +1,584 @@
+---
+import Layout from '../../layouts/Base.astro';
+import JsonLd from '../../components/JsonLd.astro';
+import { getCollection } from 'astro:content';
+
+const works = await getCollection('works');
+const nobody = works.find(w => w.id.endsWith('nobody.md'));
+const { data } = nobody!;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const imageLookup = new Map();
+data.images?.forEach(img => imageLookup.set(img.src.split('/').pop(), img));
+data.diptychImages?.forEach(img => imageLookup.set(img.src.split('/').pop(), img));
+const imageAlt = (filename: string, fallback: string) => imageLookup.get(filename)?.altText || fallback;
+---
+
+<Layout title="NOBODY — Works" description={data.subtitle}>
+  <JsonLd slot="head" data={data} />
+  <main class="reader">
+    <a href={`${base}/works`} class="reader-back">← Works</a>
+
+    <!-- Opening -->
+    <section class="reader-opening">
+      <p class="reader-series-name">NOBODY</p>
+      <h1 class="reader-subtitle">Nobody is the state before becoming someone.</h1>
+      <div class="reader-opening-img">
+        <img src={`${base}/images/works/nobody/the-interval.jpg`} alt={data.coverAltText || data.title} loading="eager" decoding="async" />
+      </div>
+    </section>
+
+    <!-- Concept Notes — PDF pages 1–3 -->
+    <section class="reader-notes">
+      <h2 class="notes-heading">概念笔记</h2>
+
+      <div class="notes-block">
+        <h3>1. 主题逻辑</h3>
+        <p>Nobody = 尚未被命名的存在。</p>
+        <p>它是不被看见的人，没有身份的人，还未成为&ldquo;某人&rdquo;的人，在社会意义上&ldquo;无名&rdquo;的人。</p>
+        <p>小孩形象是：尚未被定义的人，尚未拥有社会角色的人，纯粹存在的人。</p>
+        <p>这个系列本身就在讨论一种&ldquo;成为某人之前的状态&rdquo;。</p>
+        <p class="notes-en">Nobody is not a child. Nobody is before becoming someone.</p>
+      </div>
+
+      <div class="notes-block">
+        <h3>2. 重复形象的深层意义</h3>
+        <p>重复 = 去个体化。<br/>重复 = 强化符号。<br/>重复 = 剥离私人叙事。</p>
+        <p class="notes-en">The child in this series is not autobiographical. It is a recurring position &mdash; a structural presence within shifting power relations.</p>
+        <p>Nobody 不是某个具体的人物形象，而是一个位置。这个位置是：尚未被命名的主体，权力结构中的空位，在成为&ldquo;某人&rdquo;之前的状态&mdash;或者，每个人都曾经是的那种存在。</p>
+        <p>重复出现的形象，本身就是在强调：这不是他，是任何人。</p>
+      </div>
+
+      <div class="notes-block">
+        <h3>3. 孩童 + 佛像脸：两种极端状态的叠加</h3>
+        <p>孩童象征：本能、冲动、未完成、未被社会化、身体性。</p>
+        <p>佛像象征：觉悟、静止、超然、无我、超越欲望。</p>
+        <p>这两种状态几乎是对立的。一个是未成形，一个是已觉醒。动物性和神性同时存在于一个身体里，本身就在制造张力：是未觉之身，还是已悟之脸？</p>
+        <p>Nobody：无我之前 / 无我之后。</p>
+      </div>
+    </section>
+
+    <div class="reader-rule"></div>
+
+    <!-- Exhibition Preface -->
+    <section class="reader-preface">
+      <h2 class="preface-heading">展览前言</h2>
+
+      <div class="reader-preface-cn">
+        <p>在这个系列中，反复出现的是一个小孩的身体。</p>
+        <p>他奔跑、对抗、踢踹、试探边界。然而，他的面部却呈现出标准佛像式的庄严与慈悲。</p>
+        <p>身体属于本能。面容属于觉性。</p>
+        <p>这两种状态在同一具身体中并置&mdash;这种错位构成了作品的核心张力：冲动与超然，未完成与已觉悟，情绪与无我。</p>
+        <p>&ldquo;Nobody&rdquo;并非指向某一个具体的孩子。它不是童年叙事，也不是私人记忆。它是一种位置，一种结构性的存在状态&mdash;一个可以被反复占据，却从未真正归属于任何人的位置。</p>
+        <p>当身体在行动，而面容保持恒定的慈悲与静止，一种微妙的张力随之产生：如果&ldquo;我&rdquo;并不执着于自身，那么冲突是否仍然成立？如果主体尚未形成，权力又如何被定义？</p>
+        <p>这个反复出现的形象从未成长。他停留在成为&ldquo;某人&rdquo;之前的悬置状态。或者，也可能已经越过&ldquo;成为&rdquo;的阶段，进入一种无名、无我、无确定性的存在。</p>
+        <p>&ldquo;Nobody&rdquo;不是一个人物。是一种在本能与觉性之间，被拉开的空间。</p>
+        <p>在这个空间里，我们看到的不是孩子。而是每一个尚未被命名、或已经放下姓名的存在。</p>
+      </div>
+
+      <div class="reader-preface-en">
+        <p>Throughout this series, a child&rsquo;s body repeatedly appears. He runs, confronts, kicks, and tests the boundaries of his surroundings. Yet his face bears the solemn and compassionate expression of a classical Buddha.</p>
+        <p>The body belongs to instinct. The face belongs to awareness.</p>
+        <p>These two states are placed within the same figure. This dislocation constitutes the central tension of the work &mdash; impulse and transcendence, incompletion and awakening, emotion and non-self.</p>
+        <p>&ldquo;Nobody&rdquo; does not refer to a specific child. It is neither a narrative of childhood nor a private memory. It is a position &mdash; a structural state of being &mdash; a place that can be repeatedly occupied, yet never truly belongs to anyone.</p>
+        <p>When the body acts while the face maintains a constant compassion and stillness, a subtle tension emerges: If the self is not attached to itself, does conflict still hold? If subjectivity has not yet fully formed, how is power to be defined?</p>
+        <p>This recurring figure never grows. He remains suspended before becoming &ldquo;someone.&rdquo; Or perhaps he has already passed beyond the need to become, entering a state without name, without self, without certainty.</p>
+        <p>&ldquo;Nobody&rdquo; is not a character. It is a space stretched open between instinct and awareness.</p>
+        <p>Within this space, what we encounter is not a child, but every being not yet named &mdash; or one who has already laid down a name.</p>
+      </div>
+    </section>
+
+    <!-- ===== WORKS ===== -->
+
+    <!-- Presence -->
+    <section class="reader-stage">
+      <p class="stage-name">出现 Presence</p>
+      <p class="stage-line">Nobody first appears as a body, not as an identity.</p>
+    </section>
+
+    <!-- 1. Repetition -->
+    <section class="reader-work">
+      <div class="work-image">
+        <img src={`${base}/images/works/nobody/repetition.jpg`} alt={imageAlt('repetition.jpg', '永恒循环 Repetition')} loading="lazy" decoding="async" />
+      </div>
+      <p class="work-title">永恒循环 <span class="work-title-en">Repetition</span></p>
+      <p class="work-meta">2025, 布面油画, 40 &times; 60 cm</p>
+      <div class="work-text">
+        <p>身体参与游戏，灵魂长出翅膀。</p>
+        <p>旋转木马永远在奔跑，却从未离开原地。</p>
+        <p>但，看见循环本身，已经是一种醒来。</p>
+      </div>
+    </section>
+
+    <!-- 2. The Interval -->
+    <section class="reader-work">
+      <div class="work-image">
+        <img src={`${base}/images/works/nobody/the-interval.jpg`} alt={imageAlt('the-interval.jpg', 'The Interval')} loading="lazy" decoding="async" />
+      </div>
+      <p class="work-title">The Interval</p>
+      <p class="work-meta">2025, 布面油画, 50 &times; 50 cm</p>
+      <div class="work-text">
+        <p>&ldquo;Interval&rdquo;音程，在音乐中指向两音之间的距离。它不是声音本身，却决定了声音如何被听见。</p>
+        <p>这种不显眼的间隙构成的结构无处不在。</p>
+        <p>身体仍然在场，环境仍然运转，大脑却突然空白。在那个瞬间，思考暂停，判断退场，意义尚未被赋予。</p>
+        <p>但正是这种&ldquo;尚未&rdquo;，才可孕育新的秩序。</p>
+      </div>
+    </section>
+
+    <div class="reader-rule"></div>
+
+    <!-- Friction -->
+    <section class="reader-stage">
+      <p class="stage-name">对抗 Friction</p>
+      <p class="stage-line">Nobody tests the world before understanding it.</p>
+    </section>
+
+    <!-- 3. The Refusal to Sink -->
+    <section class="reader-work">
+      <div class="work-image">
+        <img src={`${base}/images/works/nobody/the-refusal-to-sink.jpg`} alt={imageAlt('the-refusal-to-sink.jpg', '拒绝下沉 The Refusal to Sink')} loading="lazy" decoding="async" />
+      </div>
+      <p class="work-title">拒绝下沉 <span class="work-title-en">The Refusal to Sink</span></p>
+      <p class="work-meta">2025, 布面油画, 60 &times; 60 cm</p>
+      <div class="work-text">
+        <p>权威已经失效。神明只是充气的形状。</p>
+        <p>世界氧气充足，却无法触碰。不会抵达任何目的，只是不要下沉。</p>
+        <p>在失重的结构里，活着本身，已经是一种微弱而坚定的反抗。</p>
+      </div>
+    </section>
+
+    <!-- 4. Nobody Plays Here -->
+    <section class="reader-work">
+      <div class="work-image">
+        <img src={`${base}/images/works/nobody/nobody-plays-here.jpg`} alt={imageAlt('nobody-plays-here.jpg', 'Nobody Plays Here')} loading="lazy" decoding="async" />
+      </div>
+      <p class="work-title">Nobody Plays Here</p>
+      <p class="work-meta">2026, 布面油画, 50 &times; 50 cm</p>
+      <div class="work-text">
+        <p>在世界的游乐场里，没有人真正在玩，但每个人都被卷入游戏。</p>
+        <p>兴奋是假，疲惫是真的。热闹是假，孤独是真的。</p>
+        <p>谁给我全世界，我都会怀疑。</p>
+      </div>
+    </section>
+
+    <!-- 5. The Performed Self -->
+    <section class="reader-work">
+      <div class="work-image">
+        <img src={`${base}/images/works/nobody/the-performed-self.jpg`} alt={imageAlt('the-performed-self.jpg', 'The Performed Self')} loading="lazy" decoding="async" />
+      </div>
+      <p class="work-title">The Performed Self</p>
+      <p class="work-meta">2026, 布面油画, 50 &times; 50 cm</p>
+      <div class="work-text">
+        <p>他庞大、原始，却礼貌又温顺。</p>
+        <p>这一个经过修饰、优化、得体呈现的自我&mdash;即便在被多重灯光的曝光中，依然足够稳重，足够可被接受，甚至足够安全。</p>
+        <p>但也正因如此，让人厌恶。因为厌恶，更要持续凝视和审判。</p>
+        <p>过度照明，使自我成为对象。自我成为对象，便开始被判断。不是对抗他者，而是对抗那个被完成的自己。</p>
+        <p>而熊，从未真正反击。因为它本就是&ldquo;我&rdquo;。</p>
+        <p>当个体在社会秩序中完成自我建构之后，如何面对那个被塑造得足够成熟、却逐渐失去真实感的版本。在持续的光照之下，表演成为身份。而厌恶，成为回声。</p>
+      </div>
+    </section>
+
+    <!-- 6. The Inherited Loop — diptych -->
+    <section class="reader-work">
+      <div class="work-diptych">
+        <figure>
+          <img src={`${base}/images/works/nobody/the-inherited-loop1.jpg`} alt={imageAlt('the-inherited-loop1.jpg', '被继承的循环 左联')} loading="lazy" decoding="async" />
+        </figure>
+        <figure>
+          <img src={`${base}/images/works/nobody/the-inherited-loop2.jpg`} alt={imageAlt('the-inherited-loop2.jpg', '被继承的循环 右联')} loading="lazy" decoding="async" />
+        </figure>
+      </div>
+      <p class="work-title">被继承的循环 <span class="work-title-en">The Inherited Loop</span></p>
+      <p class="work-meta">2025, 布面油画, 40 &times; 60 cm (each)</p>
+      <div class="work-text">
+        <p>旋转木马持续转动。不需要目光，也不需要参与。</p>
+        <p>有些结构早于个体存在。它们在环境中运转，不依赖意识，不依赖意志，甚至不依赖参与&mdash;它只是在时间里重复，在无声的暴露中被习得。</p>
+        <p>当意识退场，当思考停顿，它们并未消失。它们进入梦境，进入身体，成为一种熟悉的节奏。</p>
+        <p>循环不是强加的。它被继承：从环境转入身体，从制度转入记忆。</p>
+        <p>无人觉察，却无人能逃。</p>
+      </div>
+    </section>
+
+    <div class="reader-rule"></div>
+
+    <!-- Suspension -->
+    <section class="reader-stage">
+      <p class="stage-name">悬置 Suspension</p>
+      <p class="stage-line">Nobody is the state before becoming someone.</p>
+    </section>
+
+    <!-- 7. Nobody Is Watching -->
+    <section class="reader-work">
+      <div class="work-image">
+        <img src={`${base}/images/works/nobody/nobody-is-watching.jpg`} alt={imageAlt('nobody-is-watching.jpg', 'Nobody Is Watching')} loading="lazy" decoding="async" />
+      </div>
+      <p class="work-title">Nobody Is Watching</p>
+      <p class="work-meta">2025, 布面油画, 50 &times; 70 cm</p>
+      <div class="work-text">
+        <p>我们生活在没有隐私的时代，也生活在没有人在意的时代。</p>
+        <p>我们的日常，被一些随机却无用的东西拼接起来。我们也日复一日地被并不在意的东西消耗。</p>
+        <p>所有人都在看，便没有人在看。</p>
+      </div>
+    </section>
+
+    <!-- 8. Out of Place -->
+    <section class="reader-work">
+      <div class="work-image">
+        <img src={`${base}/images/works/nobody/out-of-place.jpg`} alt={imageAlt('out-of-place.jpg', '不在其所 Out of Place')} loading="lazy" decoding="async" />
+      </div>
+      <p class="work-title">不在其所 <span class="work-title-en">Out of Place</span></p>
+      <p class="work-meta">2025, 布面油画, 50 &times; 60 cm</p>
+      <div class="work-text">
+        <p>当所有元素都偏离其所，而我们，早已习惯。</p>
+        <p>每一个元素都存在。却没有一个元素成立。物体没有消失，环境没有崩塌，秩序却在悄然失效。</p>
+        <p>从功能到位置，从逻辑到结构，一切都&ldquo;在场&rdquo;，却不再对应。</p>
+        <p>这种失序并非灾难性的。它安静、平衡，甚至显得合理。正因如此，它更容易被忽略。</p>
+        <p>我们习惯于在错位中生活。习惯于在不匹配的系统里呼吸。当逻辑长期失效，人便不再察觉失效。</p>
+        <p>他不是看不见。而是我们不再看见。</p>
+      </div>
+    </section>
+
+    <!-- 9. Nobody in Control -->
+    <section class="reader-work">
+      <div class="work-image">
+        <img src={`${base}/images/works/nobody/nobody-in-control.jpg`} alt={imageAlt('nobody-in-control.jpg', 'Nobody in Control')} loading="lazy" decoding="async" />
+      </div>
+      <p class="work-title">Nobody in Control</p>
+      <p class="work-meta">布面油画</p>
+      <div class="work-text">
+        <p>孩子闭着眼，坐在红色幕布之后。双手悬挂着线，线下是一整座城市模型。背景贴着报刊碎片，像历史的痕迹，也像公共叙事的碎片。</p>
+        <p>他没有野心，也没有愤怒。他温柔、纯净，却在无意识中操控着城市的秩序。</p>
+        <p>权力存在，但无人清醒。结构自动运转，责任被抽离。</p>
+        <p>它不控诉，也不评判。它冷静地呈现&ldquo;平庸之恶&rdquo;：不是激情，不是意图，而是缺乏思考，缺乏察觉，缺乏承担。</p>
+        <p>闭眼的孩子和城市的秩序形成张力：纯净的存在与自动运转的世界重叠，操控无声发生，责任无处安放。</p>
+      </div>
+    </section>
+
+    <div class="reader-end"></div>
+  </main>
+</Layout>
+
+<style>
+  /* === Base container === */
+  .reader {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: calc(var(--spacing-xl) + 2rem) var(--spacing-md) var(--spacing-xl);
+    font-family: var(--font-serif);
+  }
+
+  .reader-back {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+    display: inline-block;
+    margin-bottom: var(--spacing-md);
+  }
+
+  /* === Opening === */
+  .reader-opening {
+    margin-bottom: calc(var(--spacing-xl) + 2rem);
+  }
+
+  .reader-series-name {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .reader-subtitle {
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    font-weight: 300;
+    letter-spacing: 0.03em;
+    line-height: 1.15;
+    margin-bottom: var(--spacing-lg);
+    font-family: var(--font-serif);
+    color: var(--color-text);
+  }
+
+  .reader-opening-img {
+    margin: var(--spacing-md) calc(-1 * var(--spacing-md)) 0;
+  }
+
+  .reader-opening-img img {
+    width: 100%;
+    display: block;
+    background: #eaeaea;
+  }
+
+  /* === Concept Notes === */
+  .reader-notes {
+    max-width: 680px;
+    margin: 0 auto calc(var(--spacing-xl) + 2rem);
+    border-left: 1px solid var(--color-border);
+    padding: var(--spacing-xs) 0 var(--spacing-xs) var(--spacing-lg);
+  }
+
+  .notes-heading {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-md);
+    font-weight: 400;
+  }
+
+  .notes-block {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .notes-block:last-child {
+    margin-bottom: 0;
+  }
+
+  .notes-block h3 {
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-sm);
+    font-weight: 400;
+    font-family: var(--font-serif);
+  }
+
+  .notes-block p {
+    font-size: 0.875rem;
+    line-height: 1.85;
+    color: var(--color-text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .notes-en {
+    font-style: italic;
+    color: var(--color-text-muted);
+    opacity: 0.6;
+    font-size: 0.8125rem;
+  }
+
+  /* === Preface === */
+  .reader-preface {
+    max-width: 680px;
+    margin: 0 auto var(--spacing-xl);
+  }
+
+  .preface-heading {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-md);
+    font-weight: 400;
+  }
+
+  .reader-preface-cn {
+    font-size: 1rem;
+    line-height: 1.95;
+    letter-spacing: 0.03em;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .reader-preface-cn p {
+    margin-bottom: var(--spacing-sm);
+    text-indent: 2em;
+  }
+
+  .reader-preface-cn p:first-child {
+    text-indent: 0;
+  }
+
+  .reader-preface-en {
+    font-size: 0.8125rem;
+    line-height: 1.85;
+    letter-spacing: 0.02em;
+    color: var(--color-text-muted);
+  }
+
+  .reader-preface-en p {
+    margin-bottom: 0.65rem;
+  }
+
+  /* === Stage markers === */
+  .reader-stage {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+    padding: var(--spacing-lg) 0;
+  }
+
+  .stage-name {
+    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    letter-spacing: 0.08em;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .stage-line {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+    letter-spacing: 0.03em;
+  }
+
+  /* === Works === */
+  .reader-work {
+    margin-bottom: calc(var(--spacing-xl) + 2rem);
+  }
+
+  .reader-work:last-of-type {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .work-image {
+    margin: 0 calc(-1 * var(--spacing-md)) var(--spacing-lg);
+  }
+
+  .work-image img {
+    width: 100%;
+    display: block;
+    background: #eaeaea;
+  }
+
+  .work-diptych {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 0 calc(-1 * var(--spacing-md)) var(--spacing-lg);
+  }
+
+  .work-diptych figure {
+    margin: 0;
+  }
+
+  .work-diptych img {
+    width: 100%;
+    display: block;
+    background: #eaeaea;
+  }
+
+  .work-title {
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    letter-spacing: 0.04em;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-md);
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 400;
+  }
+
+  .work-title-en {
+    font-weight: 300;
+    opacity: 0.45;
+    font-size: 0.9375rem;
+  }
+
+  .work-meta {
+    max-width: 680px;
+    margin: 0 auto var(--spacing-md);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.04em;
+    opacity: 0.6;
+  }
+
+  .work-text {
+    max-width: 680px;
+    margin: 0 auto;
+    font-size: 1rem;
+    line-height: 1.9;
+    letter-spacing: 0.03em;
+    color: var(--color-text);
+  }
+
+  .work-text p {
+    margin-bottom: var(--spacing-sm);
+    text-indent: 2em;
+  }
+
+  .work-text p:first-child {
+    text-indent: 0;
+  }
+
+  /* === Dividers === */
+  .reader-rule {
+    max-width: 680px;
+    margin: var(--spacing-lg) auto;
+    height: 1px;
+    background: var(--color-border);
+    opacity: 0.4;
+  }
+
+  .reader-end {
+    max-width: 680px;
+    margin: calc(var(--spacing-xl) + 2rem) auto 0;
+    text-align: center;
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+  }
+
+  /* === Mobile === */
+  @media (max-width: 768px) {
+    .reader {
+      padding: calc(var(--spacing-lg) + 3rem) var(--spacing-sm) var(--spacing-lg);
+    }
+
+    .reader-opening {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .reader-subtitle {
+      font-size: clamp(2rem, 8vw, 2.75rem);
+    }
+
+    .reader-opening-img,
+    .work-image,
+    .work-diptych {
+      margin-left: calc(-1 * var(--spacing-sm));
+      margin-right: calc(-1 * var(--spacing-sm));
+    }
+
+    .work-diptych {
+      gap: 0.5rem;
+    }
+
+    .reader-preface,
+    .reader-notes,
+    .work-text,
+    .reader-stage,
+    .reader-rule {
+      max-width: 100%;
+    }
+
+    .reader-notes {
+      padding-left: var(--spacing-md);
+    }
+
+    .reader-preface-cn {
+      font-size: 0.9375rem;
+    }
+
+    .work-title {
+      font-size: 1rem;
+    }
+
+    .work-meta {
+      max-width: 100%;
+    }
+
+    .work-text {
+      font-size: 0.9375rem;
+    }
+
+    .stage-name {
+      font-size: 1.125rem;
+    }
+  }
+</style>

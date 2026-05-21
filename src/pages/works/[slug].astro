@@ -1,0 +1,162 @@
+---
+import Layout from '../../layouts/Base.astro';
+import JsonLd from '../../components/JsonLd.astro';
+import ImageViewer from '../../components/ImageViewer.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const works = await getCollection('works');
+  const bespokePages = new Set(['nobody', 'post-sacred', 'promised-land']);
+  return works
+    .filter(work => !bespokePages.has(work.id.replace(/\.md$/, '')))
+    .map(work => ({
+    params: { slug: work.id.replace(/\.md$/, '') },
+    props: { work },
+  }));
+}
+
+const { work } = Astro.props;
+const { data } = work;
+const { Content } = await work.render();
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<Layout title={`${data.title} — Works`} description={data.subtitle}>
+  <JsonLd slot="head" data={data} />
+  <main class="series-detail page-padding">
+    <header class="series-header">
+      <a href={`${base}/works`} class="back-link">← Works</a>
+      <h1 class="series-title">{data.title}</h1>
+      <p class="series-subtitle">{data.subtitle}</p>
+    </header>
+
+    <div class="series-cover">
+      <img
+        src={`${base}${data.coverImage}`}
+        alt={data.title}
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
+
+    <section class="series-text">
+      <div class="text-content">
+        <Content />
+      </div>
+    </section>
+
+    {data.images && data.images.length > 0 && (
+      <section class="series-images">
+        <h2 class="section-label">作品图组</h2>
+        <ImageViewer images={data.images} layout="stack" gap="lg" />
+      </section>
+    )}
+
+    {data.diptychImages && data.diptychImages.length > 0 && (
+      <section class="series-images">
+        <h2 class="section-label">双联画</h2>
+        <ImageViewer images={data.diptychImages} layout="grid" gap="md" />
+      </section>
+    )}
+
+    {data.detailImages && data.detailImages.length > 0 && (
+      <section class="series-details">
+        <h2 class="section-label">局部细节</h2>
+        <ImageViewer images={data.detailImages} layout="grid" gap="md" />
+      </section>
+    )}
+
+    {data.exhibitionImages && data.exhibitionImages.length > 0 && (
+      <section class="series-exhibitions">
+        <h2 class="section-label">展览与现场</h2>
+        <ImageViewer images={data.exhibitionImages} layout="stack" gap="lg" />
+      </section>
+    )}
+  </main>
+</Layout>
+
+<style>
+  .series-detail {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
+  }
+
+  .series-header {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .back-link {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+    display: inline-block;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .series-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .series-subtitle {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.04em;
+  }
+
+  .series-cover {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .series-cover img {
+    width: 100%;
+    background: #e8e8e8;
+    min-height: 400px;
+    object-fit: cover;
+  }
+
+  .series-text {
+    margin-bottom: var(--spacing-xl);
+    max-width: 680px;
+  }
+
+  .text-content :global(h2) {
+    font-size: 1.25rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .text-content :global(p) {
+    margin-bottom: var(--spacing-sm);
+    font-size: 0.9375rem;
+    line-height: 1.9;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .series-images,
+  .series-details,
+  .series-exhibitions {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  @media (max-width: 768px) {
+    .series-cover img {
+      min-height: 250px;
+    }
+  }
+</style>

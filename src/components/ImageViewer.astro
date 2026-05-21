@@ -1,0 +1,81 @@
+---
+interface Props {
+  images: Array<{ src: string; caption?: string }>;
+  layout?: 'grid' | 'stack' | 'masonry';
+  gap?: 'sm' | 'md' | 'lg';
+}
+
+const { images, layout = 'stack', gap = 'lg' } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const gapMap = { sm: '0.5rem', md: '1rem', lg: '2rem' };
+const gridCols = images.length <= 2 ? 2 : 3;
+---
+
+<div class="image-viewer" data-layout={layout} style={`--gap: ${gapMap[gap]}; --cols: ${gridCols}`}>
+  {images.map(img => (
+    <figure class="image-item">
+      <img
+        src={`${base}${img.src}`}
+        alt={img.caption ?? ''}
+        loading="lazy"
+        decoding="async"
+      />
+      {img.caption && <figcaption>{img.caption}</figcaption>}
+    </figure>
+  ))}
+</div>
+
+<style>
+  .image-viewer {
+    width: 100%;
+  }
+
+  .image-viewer[data-layout="stack"] {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+  }
+
+  .image-viewer[data-layout="grid"] {
+    display: grid;
+    grid-template-columns: repeat(var(--cols), 1fr);
+    gap: var(--gap);
+  }
+
+  .image-viewer[data-layout="masonry"] {
+    columns: var(--cols);
+    column-gap: var(--gap);
+  }
+
+  .image-viewer[data-layout="masonry"] .image-item {
+    break-inside: avoid;
+    margin-bottom: var(--gap);
+  }
+
+  .image-item {
+    margin: 0;
+  }
+
+  .image-item img {
+    width: 100%;
+    display: block;
+    background: #f0f0f0;
+    min-height: 200px;
+  }
+
+  figcaption {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin-top: 0.5rem;
+    letter-spacing: 0.03em;
+  }
+
+  @media (max-width: 768px) {
+    .image-viewer[data-layout="grid"],
+    .image-viewer[data-layout="masonry"] {
+      columns: 1;
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

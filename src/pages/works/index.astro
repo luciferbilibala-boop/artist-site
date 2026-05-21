@@ -1,0 +1,108 @@
+---
+import Layout from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const works = await getCollection('works', ({ data }) => data);
+works.sort((a, b) => a.data.order - b.data.order);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<Layout title="Works" description="作品与系列">
+  <main class="works-page page-padding">
+    <header class="page-header">
+      <h1 class="page-title">Works</h1>
+    </header>
+
+    <div class="series-grid">
+      {works.map(work => (
+        <a href={`${base}/works/${work.id.replace(/\.md$/, '')}`} class="series-card">
+          <div class="series-image-wrap">
+            <img
+              src={`${base}${work.data.coverImage}`}
+              alt={work.data.title}
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="series-info">
+            <h2 class="series-title">{work.data.title}</h2>
+            <p class="series-concept">{work.data.subtitle}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .works-page {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
+  }
+
+  .page-header {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .page-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .page-subtitle {
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    letter-spacing: 0.04em;
+  }
+
+  .series-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg) var(--spacing-md);
+  }
+
+  .series-card {
+    display: block;
+  }
+
+  .series-image-wrap {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: #e8e8e8;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .series-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .series-card:hover .series-image-wrap img {
+    transform: scale(1.02);
+  }
+
+  .series-title {
+    font-size: 1.25rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.25rem;
+  }
+
+  .series-concept {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.03em;
+  }
+
+  @media (max-width: 768px) {
+    .series-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

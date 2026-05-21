@@ -1,0 +1,164 @@
+---
+import Layout from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const notes = await getCollection('notes', ({ data }) => data);
+notes.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const categories = [...new Set(notes.map(n => n.data.category))];
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<Layout title="Notes / Mind" description="艺术家的观察、文字与思考">
+  <main class="notes-page page-padding">
+    <header class="page-header">
+      <h1 class="page-title">Notes / Mind</h1>
+      <p class="page-subtitle">观察、观点、文字、图文</p>
+    </header>
+
+    {
+      categories.map(category => {
+        const categoryNotes = notes.filter(n => n.data.category === category);
+        return (
+          <section class="category-section">
+            <h2 class="category-title">{category}</h2>
+            <div class="notes-list">
+              {categoryNotes.map(note => (
+                <a href={`${base}/notes/${note.id.replace(/\.md$/, '')}`} class="note-card">
+                  {note.data.coverImage && (
+                    <div class="note-image">
+                      <img src={`${base}${note.data.coverImage}`} alt={note.data.title} loading="lazy" />
+                    </div>
+                  )}
+                  <div class="note-body">
+                    <h3 class="note-title">{note.data.title}</h3>
+                    {note.data.excerpt && (
+                      <p class="note-excerpt">{note.data.excerpt}</p>
+                    )}
+                    <div class="note-meta">
+                      <time datetime={note.data.date.toISOString()}>
+                        {note.data.date.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}
+                      </time>
+                      {note.data.type === 'video' && <span class="note-type">视频</span>}
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </section>
+        );
+      })
+    }
+  </main>
+</Layout>
+
+<style>
+  .notes-page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
+  }
+
+  .page-header {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .page-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    letter-spacing: 0.06em;
+  }
+
+  .page-subtitle {
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    letter-spacing: 0.04em;
+    margin-top: var(--spacing-xs);
+  }
+
+  .category-section {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .category-title {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .notes-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .note-card {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm) 0;
+  }
+
+  .note-card:has(.note-image:empty),
+  .note-card:not(:has(.note-image)) {
+    grid-template-columns: 1fr;
+  }
+
+  .note-image {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: #e8e8e8;
+  }
+
+  .note-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .note-title {
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.25rem;
+  }
+
+  .note-excerpt {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .note-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  .note-type {
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border: 1px solid var(--color-border);
+    padding: 2px 6px;
+    border-radius: 2px;
+  }
+
+  @media (max-width: 768px) {
+    .note-card {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,624 @@
+---
+import Layout from '../../layouts/Base.astro';
+import JsonLd from '../../components/JsonLd.astro';
+import { getCollection } from 'astro:content';
+
+const works = await getCollection('works');
+const ps = works.find(w => w.id.endsWith('post-sacred.md'));
+const { data } = ps!;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const imageLookup = new Map();
+data.images?.forEach(img => imageLookup.set(img.src.split('/').pop(), img));
+const imageAlt = (filename: string, fallback: string) => imageLookup.get(filename)?.altText || fallback;
+---
+
+<Layout title="POST-SACRED — Works" description={data.subtitle}>
+  <JsonLd slot="head" data={data} />
+  <main class="reader">
+    <a href={`${base}/works`} class="reader-back">← Works</a>
+
+    <!-- Opening -->
+    <section class="reader-opening">
+      <p class="reader-series-name">POST-SACRED</p>
+      <h1 class="reader-title">后神圣时代</h1>
+      <p class="reader-core">
+        宗教 &times; 科技 &times; 身体<br />
+        在科技时代，神是否仍然是神。<br />
+        或者：神是否只是人类制造的一种结构。
+      </p>
+      <div class="reader-opening-img">
+        <img src={`${base}/images/works/post-sacred/specimen.jpg`} alt={data.coverAltText || data.title} loading="eager" decoding="async" />
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="reader-notes">
+      <h2 class="notes-heading">About</h2>
+      <div class="notes-list">
+        <span>Post-Humanism 后人类</span>
+        <span>Bio-Technology Aesthetics 生物科技美学</span>
+        <span>Reconstruction of Faith 信仰的再建构</span>
+      </div>
+    </section>
+
+    <!-- Exhibition Preface -->
+    <section class="reader-preface">
+      <h2 class="preface-heading">展览前言</h2>
+
+      <div class="reader-preface-cn">
+        <p>在人类历史的大部分时间里，神圣被认为是来自更高处的存在。它来自天空、来自神话、来自不可触碰的领域。人类只能仰望、祈祷、服从。</p>
+        <p>但在今天，这种关系正在发生改变。当技术、医学与人工系统逐渐介入生命本身，当意识、身体与机器开始被重新组合，神圣不再只是被继承的信仰。它开始被制造。</p>
+        <p>《POST-SACRED》系列试图描绘这样一个转折时刻：在一个神圣逐渐消退的时代，人类如何重新创造神。</p>
+      </div>
+
+      <div class="reader-preface-en">
+        <p>For most of human history, the sacred was believed to come from above. It belonged to the sky, to mythology, to a realm beyond human reach. Human beings could only look up, pray, and obey.</p>
+        <p>Today, that relationship is shifting. As technology, medicine, and artificial systems begin to intervene in life itself, as consciousness, body, and machinery are recombined, the sacred is no longer something merely inherited. It begins to be manufactured.</p>
+        <p>The POST-SACRED series explores this turning point &mdash; a moment when the sacred fades, and humanity starts to reconstruct its own gods.</p>
+      </div>
+    </section>
+
+    <div class="reader-rule"></div>
+
+    <!-- Act 1: Body Remains -->
+    <section class="reader-stage">
+      <p class="stage-name">第一幕：身体遗骸</p>
+      <p class="stage-line">Body Remains</p>
+    </section>
+
+    <!-- Specimen -->
+    <section class="reader-work">
+      <div class="work-image">
+        <img src={`${base}/images/works/post-sacred/specimen.jpg`} alt={imageAlt('specimen.jpg', 'Specimen 标本')} loading="lazy" decoding="async" />
+      </div>
+      <p class="work-title">Specimen <span class="work-title-cn">标本</span></p>
+      <p class="work-meta">2025, 布面油画, 40 &times; 60 cm</p>
+      <div class="work-text">
+        <p>没有头意味着：意识被移除。<br/>没有腿意味着：行动被移除。<br/>剩下的只有：身体结构本身。</p>
+        <p>也就是说，这具身体已经被完全去人格化。它不再是一个人。它变成了一个：生物结构。</p>
+        <p>一具骷髅悬浮在透明水箱之中，骨骼之间穿插着花朵与鱼群。它既像一件生物学标本，又像一座被展示的圣物。</p>
+        <p>在传统宗教中，神圣来自超越肉身的存在。但在这里，信仰被还原为基础的结构：骨骼。身体的消失并没有终结信仰。相反，它留下了一个新的结构&mdash;一个可以被观察、被研究、甚至被重新定义的神圣遗骸。</p>
+        <p>在这个作品中，信仰第一次从神话中脱离，进入了一个类似实验室的空间。神圣开始被解剖。</p>
+      </div>
+    </section>
+
+    <!-- Seed -->
+    <section class="reader-work">
+      <div class="work-image">
+        <img src={`${base}/images/works/post-sacred/seed.jpg`} alt={imageAlt('seed.jpg', 'Seed 种子')} loading="lazy" decoding="async" />
+      </div>
+      <p class="work-title">Seed <span class="work-title-cn">种子</span></p>
+      <p class="work-meta">2025, 布面油画, 50 &times; 60 cm</p>
+      <div class="work-text">
+        <p>如果第一件作品像是标本，那么这一件更像是一次重生。</p>
+        <p>骷髅不再被封闭在玻璃箱中，花朵从骨骼之间生长出来，鱼在空气中游动。生命与死亡在这里变得难以区分。骨骼不再只是死亡的象征。它成为了一个新的生态结构。</p>
+        <p>在传统宗教中，身体被认为只是灵魂的容器。但在这个作品中，身体本身成为一种新的神圣场域。死亡并没有结束生命。它只是改变了生命的形态。</p>
+        <p>头出现了。这意味着：意识回来了。<br/>但四肢消失了。这意味着：它仍然无法行动。</p>
+        <p>于是这个身体呈现出一种非常奇怪的状态：它可以思考，但无法行动。它像一株植物。</p>
+        <p>花盆意味着：栽培。也就是说，这个身体不是自然生长的。它是被种植的。</p>
+        <p>于是这里产生一个非常关键的象征：这具身体不再是遗骸。它变成了：信仰的种子。</p>
+      </div>
+    </section>
+
+    <div class="reader-insert">
+      <p>第一阶段：身体被拆解，只剩下结构。</p>
+      <p>第二阶段：结构被重新种植，开始生长。</p>
+      <p>尝试去回答一个问题：新的信仰从哪里来？</p>
+      <p>答案是：从人类自身。人类的身体，人类的遗骸，人类的结构&mdash;都成为新的信仰材料。</p>
+    </div>
+
+    <div class="reader-rule"></div>
+
+    <!-- Act 2: Faith Regenerated -->
+    <section class="reader-stage">
+      <p class="stage-name">第二幕：信仰再生</p>
+      <p class="stage-line">Faith Regenerated</p>
+    </section>
+
+    <!-- Artificial Enlightenment -->
+    <section class="reader-work">
+      <div class="work-image">
+        <img src={`${base}/images/works/post-sacred/artificial-enlightenment.jpg`} alt={imageAlt('artificial-enlightenment.jpg', 'Artificial Enlightenment 人工觉悟')} loading="lazy" decoding="async" />
+      </div>
+      <p class="work-title">Artificial Enlightenment <span class="work-title-cn">人工觉悟</span></p>
+      <p class="work-meta">2025, 布面油画, 50 &times; 70 cm</p>
+      <div class="work-text">
+        <p>在这件作品中，神圣第一次进入医疗系统。</p>
+        <p>被赛博时代的霓虹光遮住双眼，一尊佛像站立着，机械手臂被输入一袋透明的液体。输液袋上写着一个字：&ldquo;喜&rdquo;。</p>
+        <p>这是一个极其日常的符号，通常出现在婚礼或庆典之中。但在这里，它却连接着一尊被维持生命的神像。</p>
+        <p>这个荒诞的细节揭示了一种新的现实：过去，人类向神祈求生命。现在，人类开始为神维持生命。</p>
+        <p>神不再是永恒的存在。神也需要被系统维持。在这个瞬间，信仰的结构被彻底颠倒。</p>
+      </div>
+    </section>
+
+    <!-- The New Idol -->
+    <section class="reader-work">
+      <div class="work-image">
+        <img src={`${base}/images/works/post-sacred/the-new-idol.jpg`} alt={imageAlt('the-new-idol.jpg', 'The New Idol 新神')} loading="lazy" decoding="async" />
+      </div>
+      <p class="work-title">The New Idol <span class="work-title-cn">新神</span></p>
+      <p class="work-meta">2025, 布面油画, 50 &times; 50 cm</p>
+      <div class="work-text">
+        <p>系列的最后一件作品呈现出一种安静而诡异的场景。</p>
+        <p>一尊佛像端坐在水面之上，背景是一块巨大的红色光幕。输液架静静地立在旁边。红色的光像某种神圣的祭坛，也像一个数字屏幕。</p>
+        <p>水面之上，佛像垂目静坐，依旧是世人熟悉的慈悲模样，但他的存在已经完全不同。他不再是来自神话的神。他是一个被维持、被制造、甚至可能被复制的神。</p>
+        <p>神性的源头，早已彻底颠倒。信仰的轮回，从此逆行。</p>
+      </div>
+    </section>
+
+    <div class="reader-insert">
+      <p>整个系列的结构形成了一个完整循环：</p>
+      <p class="reader-cycle">身体 &rarr; 遗骸 &rarr; 种子 &rarr; 神</p>
+      <p>这和传统宗教完全相反。传统宗教是：神 &rarr; 人 &rarr; 身体 &rarr; 尘土。而这个系列是：尘土 &rarr; 身体 &rarr; 信仰 &rarr; 神。</p>
+      <p>这正好就是：<em>POST-SACRED</em> 后神圣时代。</p>
+      <p class="reader-insert-note">神，正在被人类续命。</p>
+    </div>
+
+    <div class="reader-rule"></div>
+
+    <!-- Epilogue: Poem -->
+    <section class="reader-epilogue">
+      <p class="epilogue-heading">Epilogue</p>
+
+      <div class="epilogue-poem">
+        <h2 class="poem-title">Faith, After the Body</h2>
+        <p class="poem-subtitle">身体之后的信仰</p>
+
+        <div class="poem-stanza">
+          <p>头部消失，意识被抽离</p>
+          <p>下肢消失，行动被剥夺</p>
+          <p class="poem-en">The head disappears &mdash; consciousness is withdrawn.</p>
+          <p class="poem-en">The lower limbs vanish &mdash; the power to act is taken away.</p>
+        </div>
+
+        <div class="poem-stanza">
+          <p>肋骨与肋骨之间生长出花朵</p>
+          <p>盆骨与趾骨之间游鱼缓缓穿行</p>
+          <p class="poem-en">Between the ribs, flowers begin to grow.</p>
+          <p class="poem-en">Between the pelvis and the bones of the feet, fish glide slowly through.</p>
+        </div>
+
+        <div class="poem-stanza">
+          <p>曾经神圣来自超越</p>
+          <p>来自云端 来自来世 来自看不见的某处</p>
+          <p class="poem-en">Once, the sacred came from beyond &mdash;</p>
+          <p class="poem-en">from the clouds, from the afterlife, from somewhere unseen.</p>
+        </div>
+
+        <div class="poem-stanza">
+          <p>我们以为信仰住在高处</p>
+          <p>以为神圣不可触及</p>
+          <p class="poem-en">We believed faith lived in the heights.</p>
+          <p class="poem-en">We believed the sacred was untouchable.</p>
+        </div>
+
+        <div class="poem-stanza">
+          <p>身体的消失并没有终结信仰</p>
+          <p class="poem-en">But the disappearance of the body does not end belief.</p>
+        </div>
+
+        <div class="poem-stanza">
+          <p>神圣开始被解剖</p>
+          <p>被观察 被研究 被重新定义</p>
+          <p class="poem-en">The sacred begins to be dissected &mdash;</p>
+          <p class="poem-en">observed, studied, redefined.</p>
+        </div>
+
+        <div class="poem-stanza">
+          <p>这是信仰最残忍的时刻</p>
+          <p>也是它最诚实的时刻</p>
+          <p class="poem-en">This is the most brutal moment of faith,</p>
+          <p class="poem-en">and also its most honest one.</p>
+        </div>
+
+        <div class="poem-stanza">
+          <p>所有的都被剥除</p>
+          <p>荣耀 神秘 仪式 承诺</p>
+          <p class="poem-en">Everything is stripped away:</p>
+          <p class="poem-en">glory, mystery, ritual, promise.</p>
+        </div>
+
+        <div class="poem-stanza poem-finale">
+          <p>最后剩下什么？</p>
+          <p class="poem-en">What remains in the end?</p>
+          <p>不是天堂 不是来世 不是任何超越性的允诺</p>
+          <p class="poem-en">Not heaven. Not the afterlife. Not any transcendent promise.</p>
+          <p class="poem-last">这就是信仰本来的样子</p>
+          <p class="poem-en poem-last-en">This is faith in its original form.</p>
+          <p>它只需要一个结构</p>
+          <p>一个能够承载意义的空间</p>
+          <p class="poem-en">All it needs is a structure &mdash;</p>
+          <p class="poem-en">a space capable of holding meaning.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="reader-end"></div>
+  </main>
+</Layout>
+
+<style>
+  .reader {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: calc(var(--spacing-xl) + 2rem) var(--spacing-md) var(--spacing-xl);
+    font-family: var(--font-serif);
+  }
+
+  .reader-back {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+    display: inline-block;
+    margin-bottom: var(--spacing-md);
+  }
+
+  /* Opening */
+  .reader-opening {
+    margin-bottom: calc(var(--spacing-xl) + 2rem);
+  }
+
+  .reader-series-name {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .reader-title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    margin-bottom: var(--spacing-md);
+    font-family: var(--font-serif);
+    color: var(--color-text);
+  }
+
+  .reader-core {
+    max-width: 680px;
+    font-size: 1rem;
+    line-height: 1.9;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .reader-opening-img {
+    margin: var(--spacing-md) calc(-1 * var(--spacing-md)) 0;
+  }
+
+  .reader-opening-img img {
+    width: 100%;
+    display: block;
+    background: #eaeaea;
+  }
+
+  /* About notes */
+  .reader-notes {
+    max-width: 680px;
+    margin: 0 auto calc(var(--spacing-xl) + 2rem);
+    border-left: 1px solid var(--color-border);
+    padding: var(--spacing-xs) 0 var(--spacing-xs) var(--spacing-lg);
+  }
+
+  .notes-heading {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-sm);
+    font-weight: 400;
+  }
+
+  .notes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .notes-list span {
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+  }
+
+  /* Preface */
+  .reader-preface {
+    max-width: 680px;
+    margin: 0 auto var(--spacing-xl);
+  }
+
+  .preface-heading {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-md);
+    font-weight: 400;
+  }
+
+  .reader-preface-cn {
+    font-size: 1rem;
+    line-height: 1.95;
+    letter-spacing: 0.03em;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .reader-preface-cn p {
+    margin-bottom: var(--spacing-sm);
+    text-indent: 2em;
+  }
+
+  .reader-preface-cn p:first-child {
+    text-indent: 0;
+  }
+
+  .reader-preface-en {
+    font-size: 0.8125rem;
+    line-height: 1.85;
+    letter-spacing: 0.02em;
+    color: var(--color-text-muted);
+  }
+
+  .reader-preface-en p {
+    margin-bottom: 0.65rem;
+  }
+
+  /* Stage markers */
+  .reader-stage {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+    padding: var(--spacing-lg) 0;
+  }
+
+  .stage-name {
+    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    letter-spacing: 0.08em;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .stage-line {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+    letter-spacing: 0.03em;
+  }
+
+  /* Works */
+  .reader-work {
+    margin-bottom: calc(var(--spacing-xl) + 2rem);
+  }
+
+  .work-image {
+    margin: 0 calc(-1 * var(--spacing-md)) var(--spacing-lg);
+  }
+
+  .work-image img {
+    width: 100%;
+    display: block;
+    background: #eaeaea;
+  }
+
+  .work-title {
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    letter-spacing: 0.04em;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-md);
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 400;
+  }
+
+  .work-title-cn {
+    font-weight: 300;
+    opacity: 0.45;
+    font-size: 0.9375rem;
+  }
+
+  .work-meta {
+    max-width: 680px;
+    margin: 0 auto var(--spacing-md);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.04em;
+    opacity: 0.6;
+  }
+
+  .work-text {
+    max-width: 680px;
+    margin: 0 auto;
+    font-size: 1rem;
+    line-height: 1.9;
+    letter-spacing: 0.03em;
+    color: var(--color-text);
+  }
+
+  .work-text p {
+    margin-bottom: var(--spacing-sm);
+    text-indent: 2em;
+  }
+
+  .work-text p:first-child {
+    text-indent: 0;
+  }
+
+  /* Interstitial insert */
+  .reader-insert {
+    max-width: 680px;
+    margin: 0 auto calc(var(--spacing-xl) + 2rem);
+    font-size: 0.9375rem;
+    line-height: 1.9;
+    color: var(--color-text-muted);
+    border-left: 1px solid var(--color-border);
+    padding-left: var(--spacing-lg);
+  }
+
+  .reader-insert p {
+    margin-bottom: 0.5rem;
+  }
+
+  .reader-cycle {
+    font-size: 1.0625rem;
+    color: var(--color-text);
+    letter-spacing: 0.06em;
+    padding: var(--spacing-xs) 0;
+  }
+
+  .reader-insert-note {
+    font-style: italic;
+    font-size: 0.875rem;
+  }
+
+  /* Dividers */
+  .reader-rule {
+    max-width: 680px;
+    margin: var(--spacing-lg) auto;
+    height: 1px;
+    background: var(--color-border);
+    opacity: 0.4;
+  }
+
+  /* Epilogue / Poem */
+  .reader-epilogue {
+    max-width: 680px;
+    margin: 0 auto var(--spacing-xl);
+  }
+
+  .epilogue-heading {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-lg);
+    font-weight: 400;
+    text-align: center;
+  }
+
+  .epilogue-poem {
+    text-align: center;
+  }
+
+  .poem-title {
+    font-size: 1.25rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-xs);
+    font-family: var(--font-serif);
+  }
+
+  .poem-subtitle {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.06em;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .poem-stanza {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .poem-stanza p {
+    font-size: 0.9375rem;
+    line-height: 2;
+    color: var(--color-text);
+    margin-bottom: 0.15rem;
+  }
+
+  .poem-en {
+    font-size: 0.8125rem !important;
+    color: var(--color-text-muted) !important;
+    font-style: italic;
+    line-height: 1.7 !important;
+  }
+
+  .poem-finale {
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--color-border);
+    opacity: 0.85;
+  }
+
+  .poem-last {
+    font-size: 1.0625rem !important;
+    letter-spacing: 0.04em;
+  }
+
+  .poem-last-en {
+    margin-bottom: var(--spacing-md) !important;
+  }
+
+  .reader-end {
+    max-width: 680px;
+    margin: calc(var(--spacing-xl) + 2rem) auto 0;
+    text-align: center;
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .reader {
+      padding: calc(var(--spacing-lg) + 3rem) var(--spacing-sm) var(--spacing-lg);
+    }
+
+    .reader-opening {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .reader-title {
+      font-size: clamp(2rem, 8vw, 2.75rem);
+    }
+
+    .reader-opening-img,
+    .work-image {
+      margin-left: calc(-1 * var(--spacing-sm));
+      margin-right: calc(-1 * var(--spacing-sm));
+    }
+
+    .reader-preface,
+    .reader-notes,
+    .reader-insert,
+    .work-text,
+    .reader-stage,
+    .reader-rule,
+    .reader-epilogue {
+      max-width: 100%;
+    }
+
+    .reader-notes,
+    .reader-insert {
+      padding-left: var(--spacing-md);
+    }
+
+    .work-title {
+      font-size: 1rem;
+    }
+
+    .work-meta {
+      max-width: 100%;
+    }
+
+    .work-text,
+    .reader-preface-cn {
+      font-size: 0.9375rem;
+    }
+
+    .poem-title {
+      font-size: 1.125rem;
+    }
+  }
+</style>

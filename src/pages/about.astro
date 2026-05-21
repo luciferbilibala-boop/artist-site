@@ -1,0 +1,173 @@
+---
+import Layout from '../layouts/Base.astro';
+---
+
+<Layout
+  title="About"
+  description="艺术家简介、声明、展览与项目"
+>
+  <main class="about-page page-padding">
+    <header class="page-header">
+      <h1 class="page-title">About</h1>
+    </header>
+
+    <section class="about-section" id="statement">
+      <h2 class="section-heading">Artist Statement</h2>
+      <div class="section-body">
+        <p>
+          我的工作围绕一个核心问题展开：在何种条件下，观看可以超越辨认，抵达凝视？
+        </p>
+        <p>
+          无论是肖像画、雕塑还是纸上作品，我不断去除作品中那些容易通向"理解"的线索——面孔、身份、明确的叙事。我的假设是，当这些被移除，观众不再能"认出"画面内容时，他们将被迫进入一种更缓慢、更专注的观看状态。
+        </p>
+        <p>
+          我认为艺术的当代性不在主题或媒材之新，而在它能否创造一种不可被图像检索替代的作品体验。
+        </p>
+      </div>
+    </section>
+
+    <section class="about-section" id="how-he-sees">
+      <h2 class="section-heading">How He Sees</h2>
+      <div class="section-body">
+        <p>
+          他不相信灵感。他相信持续在场。
+        </p>
+        <p>
+          每天早晨进入工作室，咖啡一杯，不做任何预设。画面不是被"想"出来的，是在不断的覆盖和暴露中自己显现的。
+        </p>
+        <p>
+          他的观看方式受到三种训练的影响：艺术史中的形式分析、策展中的空间感知、以及长期素描训练带来的对"结构"的直觉把握。这让他在面对一张空画布时不急于填充，而是先建立结构性的锚点。
+        </p>
+      </div>
+    </section>
+
+
+    <section class="about-section" id="education">
+      <h2 class="section-heading">Education</h2>
+      <div class="section-body">
+        <ul class="info-list">
+          <li>2015 – 2019 — Accademia di Belle Arti di Brera, Milan, Department of Printmaking, Master's Degree</li>
+          <li>2012 – 2015 — Central Academy of Fine Arts, Beijing, Department of Sculpture, Master's Degree</li>
+          <li>2007 – 2012 — Central Academy of Fine Arts, Beijing, Department of Sculpture, Bachelor's Degree</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="about-section" id="awards">
+      <h2 class="section-heading">Awards</h2>
+      <div class="section-body">
+        <ul class="info-list">
+          <li>2012 — Finalist, The International Easter Arts Exhibition, Beijing</li>
+          <li>2012 — Second Prize, Graduation Project, Central Academy of Fine Arts, Beijing</li>
+          <li>2012 — Participated in The Exhibition: A Journey of a Thousand Miles</li>
+          <li>2012 — Participated in The International Sculpture Exhibition, Datong, China; Nominated for The ZengZhushao Scholarship</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="about-section" id="exhibitions">
+      <h2 class="section-heading">Exhibitions</h2>
+      <div class="section-body">
+        <ul class="info-list">
+          <li>2021 — Essere nella mente del corpo, Poschiavo — Curated by Claudia Ivan</li>
+          <li>2020 — Il terzo io, Poschiavo — Curated by Claudia Ivan</li>
+          <li>2019 — L'orizzonte del Mare - Art Award Acqua dell'Elba, Elba (awarded) — Curated by Galli Maria Cristina</li>
+          <li>2019 — Togliersi le maschere, Poschiavo — Curated by Claudia Ivan</li>
+          <li>2019 — No-entry, art salon, Milan</li>
+          <li>2019 — Transcription copy in movement, MAIO, Cassina De' Pecchi (MI) — Curated by Milena Zanetti</li>
+          <li>2019 — E' Carta mini carte Contemporanee II Biennale, Space Mantegna (MI) — Curated by Antonia Campanella</li>
+          <li>2018 — Grafica Pietro Parigi 2018, Calenzano — Curated by Giovanni Surace</li>
+          <li>2018 — Premio 2018 Unione Confcommercio (awarded) — Curated by Maria Cristina Galli</li>
+          <li>2018 — XIV Biennale of Grafic, City of Castelleone</li>
+          <li>2018 — Milan Graphic Art, Academy of Fine Arts of Brera</li>
+          <li>2017 — Brera OPEN day, Academy of Fine Arts of Brera</li>
+          <li>2017 — Brera Aperta, Academy of Fine Arts of Brera</li>
+          <li>2017 — Biennale of Soncino, a Marco — Organized by Demis Martinelli e Pietro Spoto, Museum of the Printing</li>
+          <li>2017 — Brera OPEN day, Academy of Fine Arts of Brera</li>
+          <li>2016 — Brera OPEN day, Academy of Fine Arts of Brera</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="about-section" id="projects">
+      <h2 class="section-heading">Projects</h2>
+      <div class="section-body">
+        <ul class="info-list">
+          <li>2024 — "The Gaze Lab", 艺术家自出版项目</li>
+          <li>2023 — 成都独立艺术空间驻留计划</li>
+          <li>2022 — "Borderline" 跨媒介合作项目（与舞者 S.L.）</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .about-page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
+  }
+
+  .page-header {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .page-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    letter-spacing: 0.06em;
+  }
+
+  .about-section {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .section-heading {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .section-body p {
+    margin-bottom: var(--spacing-sm);
+    max-width: 560px;
+  }
+
+  .subsection-title {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    margin-top: var(--spacing-sm);
+    color: var(--color-text);
+  }
+
+  .info-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .info-list li {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .info-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 4px;
+    height: 1px;
+    background: var(--color-text-muted);
+  }
+</style>
