@@ -4,7 +4,22 @@
 - **Astro v5**（静态站点框架）
 - 纯 CSS，无 UI 框架
 - 内容管理：Astro Content Collections（Markdown + frontmatter）
-- 部署在 GitHub Pages，路径前缀 `/artist-site`
+- 部署在 GitHub Pages，正式域名 `https://hydonbai.art`
+- 站点部署在域名根路径，无 `/artist-site` 前缀
+- GitHub 仓库：`https://github.com/luciferbilibala-boop/artist-site`
+
+## 发布配置
+
+| 项目 | 当前值 |
+|------|--------|
+| 正式域名 | `https://hydonbai.art` |
+| GitHub 仓库 | `https://github.com/luciferbilibala-boop/artist-site` |
+| 自动部署 | `.github/workflows/deploy.yml` |
+| Astro site | `astro.config.mjs` → `site: 'https://hydonbai.art'` |
+| GitHub Pages CNAME | `public/CNAME` → `hydonbai.art` |
+| Sitemap | `public/robots.txt` → `https://hydonbai.art/sitemap-index.xml` |
+
+每次更新流程：修改内容 → `npm run build` → commit → push 到 `main` → GitHub Pages 自动部署。
 
 ## 目录结构
 
@@ -49,10 +64,14 @@ src/
 - **Studio** — 3件作品，结构完成
 - **INTJ Archive** — **今天刚完成的核心功能**：
   - 12条条目，分三类：秩序 / 物证 / 失控
-  - 支持 Live Photo：hover 时播放短视频，移开恢复静态封面
-  - 技术方案：`<video poster="静态图">` ，hover JS 控制 play/pause
+  - 支持 Live Photo：桌面 hover 播放短视频，移动端点击 Play/Pause
+  - 技术方案：`<video poster="静态图">`，JS 控制 play/pause
   - 视频使用 MP4 (h.264)，视频使用 `object-fit: contain` 保留完整画面
   - 页面已移除日期显示
+- **移动端首轮优化**：
+  - 顶部导航在手机端显示为 `BAI + Menu`
+  - Menu 展开后显示两列导航
+  - Archive 视频卡片在手机端显示 Play/Pause 控制
 
 ### 待完善
 - **Works**：大部分图片仍为占位符，需替换真实作品图
@@ -101,10 +120,10 @@ title, year, medium, dimensions, series, status: 'available'|'reserved'|'sold', 
 ## 关键设计决策
 
 1. **Method 页面**：核心文本中英双语，5步流程（Incision → Saturation → Reconstruction → Transfer → Disappearance）
-2. **Archive Live Photo**：hover 触发播放，`video` poster 属性做静态封面，避免双层叠加在 Safari 上的黑帧问题
+2. **Archive Live Photo**：桌面 hover 触发播放，移动端点击播放/暂停；`video` poster 属性做静态封面，避免双层叠加在 Safari 上的黑帧问题
 3. **Archive 不记录日期**：按文件添加顺序排列
 4. **视频编码**：MOV → MP4 (libx264)，后续上传**不加缩放**，保留原始分辨率
-5. **路径前缀**：`/artist-site`（GitHub Pages 部署需要）
+5. **正式域名部署**：使用 `https://hydonbai.art` 根路径，禁止恢复 `/artist-site` 前缀
 
 ## 当前待讨论
 
@@ -112,4 +131,4 @@ title, year, medium, dimensions, series, status: 'available'|'reserved'|'sold', 
 - Notes/Studio 内容的补充
 - Archive 是否需要进一步分类或筛选功能
 - 是否需要单条 Archive 的详情页（目前卡片点击无跳转）
-- 移动端优化
+- 移动端二轮优化（可选：作品详情页排版、Archive 详情页、图片加载策略）

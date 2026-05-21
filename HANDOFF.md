@@ -1,7 +1,19 @@
 # Handoff — Hydon BAI Artist Site
 
 ## Stack
-Astro v5.18，纯 CSS，Content Collections (Markdown)。部署在 GitHub Pages，路径前缀 `/artist-site`。开发服务器 `npm run dev`，默认 `localhost:4321/artist-site`。
+Astro v5.18，纯 CSS，Content Collections (Markdown)。部署在 GitHub Pages，正式域名为 `https://hydonbai.art`，站点部署在域名根路径，无 `/artist-site` 前缀。开发服务器 `npm run dev`，默认 `http://localhost:4321/`。
+
+## 当前发布与协作状态
+
+- 本地项目路径：`/Users/yunshulucky/Desktop/AI_WorkSpace/artist-site`
+- GitHub 仓库：`https://github.com/luciferbilibala-boop/artist-site`
+- 正式域名：`https://hydonbai.art`
+- GitHub Pages 使用 `.github/workflows/deploy.yml` 自动部署，推送到 `main` 后自动构建并发布。
+- 域名相关配置：
+  - `astro.config.mjs` 的 `site` 必须保持 `https://hydonbai.art`
+  - `public/CNAME` 必须保持 `hydonbai.art`
+  - `public/robots.txt` 的 sitemap 必须指向 `https://hydonbai.art/sitemap-index.xml`
+- 每次内容或代码修改后，先运行 `npm run build`；通过后再 `git add`、`git commit`、`git push`。
 
 ## 目录结构
 ```
@@ -29,7 +41,7 @@ src/
 |------|------|
 | Method 主页 | 完成：5张 Process 图就位，底部有 Read Full Essay 链接 |
 | Method Essay | 完成：中英双语研究文章，5章节 + Manifesto |
-| INTJ Archive | 完成：12条 Live Photo 条目，hover 播放视频 |
+| INTJ Archive | 完成：12条 Live Photo 条目，桌面 hover 播放，移动端点击 Play/Pause |
 | Works 系列 | NOBODY/Promised Land/POST-SACRED 完成 L1-3，Sculpture/Other 占位 |
 | Notes | 3篇占位，需替换内容 |
 | Studio | 完成：3 件解耦指针条目，引用 Works 数据 + 销售字段 |
@@ -38,7 +50,7 @@ src/
 ## INTJ Archive 技术细节
 
 - 条目在 `src/content/archive/*.md`
-- Live Photo 方案：`<video poster="静态图.jpg">` + JS hover 播放
+- Live Photo 方案：`<video poster="静态图.jpg">` + JS 控制播放；桌面端 hover 播放，移动端点击卡片 Play/Pause。
 - 视频使用 `object-fit: contain` 保留完整画面
 - 新条目流程：用户发 MOV → ffmpeg 转 MP4（不加缩放）+ 抽第一帧 JPG → 创建 md entry
 - 命令模板：
@@ -131,7 +143,7 @@ signature: "<signature details>"
 certificate: true | false
 framingStatus: "<framing description>"
 collectorNote: "<one-line curatorial note>"
-inquiryLink: "/artist-site/contact?inquiry=<sourceWork>"
+inquiryLink: "/contact?inquiry=<sourceWork>"
 ---
 ```
 
@@ -155,4 +167,4 @@ User content → Works markdown (canonical, L1-3)
 2. Notes 内容填充
 3. Archive 可继续添加条目（用户会发 MOV 文件）
 4. Archive 卡片目前无点击跳转，可考虑加详情页
-5. 移动端进一步优化
+5. 移动端已完成首轮优化：顶部导航为 `BAI + Menu`，Archive 视频支持点击播放；后续可继续微调排版、留白和作品详情页体验。
