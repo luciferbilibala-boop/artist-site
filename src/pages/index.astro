@@ -27,11 +27,13 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <section class="featured-work">
       <video
         src={`${base}/videos/featured.mp4`}
+        poster={`${base}/images/placeholder/featured.jpg`}
         class="featured-video"
         autoplay
         loop
         muted
         playsinline
+        preload="metadata"
         width="640"
         height="368"
       ></video>
