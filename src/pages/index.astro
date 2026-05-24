@@ -33,10 +33,23 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         loop
         muted
         playsinline
+        webkit-playsinline
+        x5-video-player-type="h5"
+        x5-video-player-fullscreen="false"
         preload="auto"
         width="640"
         height="368"
       ></video>
+      <img
+        data-src={`${base}/images/home/featured-loop.webp`}
+        src={`${base}/images/home/featured-poster.jpg`}
+        alt=""
+        class="featured-fallback"
+        width="640"
+        height="368"
+        hidden
+        aria-hidden="true"
+      />
       <p class="work-caption"></p>
     </section>
 
@@ -63,8 +76,20 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 <script>
   const featuredVideo = document.querySelector<HTMLVideoElement>('.featured-video');
+  const featuredFallback = document.querySelector<HTMLImageElement>('.featured-fallback');
+  const isWeChat = /MicroMessenger/i.test(navigator.userAgent);
 
-  if (featuredVideo) {
+  if (isWeChat && featuredFallback) {
+    const fallbackSrc = featuredFallback.dataset.src;
+    if (fallbackSrc) {
+      featuredFallback.src = fallbackSrc;
+    }
+    featuredFallback.hidden = false;
+    featuredVideo?.pause();
+    featuredVideo?.setAttribute('hidden', '');
+  }
+
+  if (featuredVideo && !isWeChat) {
     featuredVideo.muted = true;
     featuredVideo.defaultMuted = true;
     featuredVideo.playsInline = true;
@@ -124,6 +149,13 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   }
 
   .featured-video {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: #e8e8e8;
+  }
+
+  .featured-fallback {
     display: block;
     width: 100%;
     height: auto;
