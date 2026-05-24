@@ -26,14 +26,14 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
     <section class="featured-work">
       <video
-        src={`${base}/videos/featured.mp4`}
+        src={`${base}/videos/featured-autoplay.mp4`}
         poster={`${base}/images/home/featured-poster.jpg`}
         class="featured-video"
         autoplay
         loop
         muted
         playsinline
-        preload="metadata"
+        preload="auto"
         width="640"
         height="368"
       ></video>
@@ -60,6 +60,32 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     </nav>
   </main>
 </Layout>
+
+<script>
+  const featuredVideo = document.querySelector<HTMLVideoElement>('.featured-video');
+
+  if (featuredVideo) {
+    featuredVideo.muted = true;
+    featuredVideo.defaultMuted = true;
+    featuredVideo.playsInline = true;
+
+    const playFeaturedVideo = () => {
+      featuredVideo.play().catch(() => {});
+    };
+
+    if (featuredVideo.readyState >= HTMLMediaElement.HAVE_ENOUGH_DATA) {
+      playFeaturedVideo();
+    } else {
+      featuredVideo.addEventListener('canplay', playFeaturedVideo, { once: true });
+    }
+
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden && featuredVideo.paused) {
+        playFeaturedVideo();
+      }
+    });
+  }
+</script>
 
 <style>
   .home {
