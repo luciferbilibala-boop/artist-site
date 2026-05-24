@@ -162,6 +162,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     background: #e8e8e8;
   }
 
+  .featured-video[hidden],
+  .featured-fallback[hidden] {
+    display: none;
+  }
+
   .work-caption {
     font-size: 0.75rem;
     color: var(--color-text-muted);
