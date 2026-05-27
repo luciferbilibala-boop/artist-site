@@ -33,7 +33,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
               <video
                 src={`${base}${entry.data.video}`}
                 poster={`${base}${entry.data.image}`}
-                aria-label={`${entry.data.title} live photo`}
+                aria-label={entry.data.aiDescription ? `${entry.data.aiDescription} live photo` : `${entry.data.title} live photo`}
                 muted
                 loop
                 playsinline
@@ -43,7 +43,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
             ) : (
               <img
                 src={`${base}${entry.data.image}`}
-                alt={entry.data.title}
+                alt={entry.data.aiDescription || entry.data.title}
                 loading="lazy"
                 decoding="async"
               />

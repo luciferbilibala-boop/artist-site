@@ -71,6 +71,7 @@ const archive = defineCollection({
     category: z.enum(['秩序', '物证', '失控']),
     tags: z.array(z.string()),
     excerpt: z.string(),
+    aiDescription: z.string().optional(),
     location: z.string().optional(),
   }),
 });

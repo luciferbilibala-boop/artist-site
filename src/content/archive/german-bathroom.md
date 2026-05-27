@@ -4,6 +4,7 @@ image: "/images/archive/german-bathroom.jpg"
 video: "/images/archive/german-bathroom.mp4"
 category: "秩序"
 tags: ["INTJ", "精神状态", "安全感", "内心秩序", "德味", "德国", "intj日常", "细节控"]
+aiDescription: "A precisely composed interior shot of a German bathroom. Clean geometric tile work, minimalist white fixtures, and sharp architectural lines dominate the frame. Every element — towel placement, faucet alignment, tile grout spacing — exhibits the systematic precision characteristic of German design culture. The lighting is cool and even, the atmosphere immaculate and restrained."
 excerpt: "in Germany 德系严谨"
 ---
 
