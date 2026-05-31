@@ -29,6 +29,14 @@ const imageAlt = (filename: string, fallback: string) => imageLookup.get(filenam
       <div class="reader-opening-img">
         <img src={`${base}/images/works/absence/absence-01.jpg`} alt={data.coverAltText || data.title} loading="eager" decoding="async" />
       </div>
+
+      <div class="reader-download">
+        <a href={`${base}/downloads/hydon-bai-absence-editorial-catalogue.pdf`} class="reader-download-link" download>
+          <span>Download PDF Feature</span>
+          <span>下载专栏图册</span>
+        </a>
+        <p class="reader-download-meta">ASSENZA / Hydon BAI / Editorial Feature</p>
+      </div>
     </section>
 
     <!-- About -->
@@ -288,6 +296,40 @@ const imageAlt = (filename: string, fallback: string) => imageLookup.get(filenam
     background: #eaeaea;
   }
 
+  .reader-download {
+    margin-top: var(--spacing-md);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
+    font-family: var(--font-sans);
+  }
+
+  .reader-download-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    border: 1px solid var(--color-text);
+    padding: 0.85rem 1rem;
+    font-size: 0.75rem;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .reader-download-link span + span {
+    color: var(--color-text-muted);
+    text-transform: none;
+    letter-spacing: 0.05em;
+  }
+
+  .reader-download-meta {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
   /* About notes */
   .reader-notes {
     max-width: 680px;
@@ -497,6 +539,16 @@ const imageAlt = (filename: string, fallback: string) => imageLookup.get(filenam
 
     .reader-title {
       font-size: clamp(2rem, 8vw, 2.75rem);
+    }
+
+    .reader-download {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .reader-download-link {
+      width: 100%;
+      justify-content: center;
     }
 
     .reader-opening-img,
