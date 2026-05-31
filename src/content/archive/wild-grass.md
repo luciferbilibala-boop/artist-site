@@ -1,5 +1,5 @@
 ---
-title: "INTJ失控｜随意一道光，野草疯长"
+title: "随意一道光，野草疯长"
 image: "/images/archive/wild-grass.jpg"
 video: "/images/archive/wild-grass.mp4"
 category: "失控"

@@ -1,5 +1,5 @@
 ---
-title: "INTJ物证｜80%完美的日子"
+title: "80%完美的日子"
 image: "/images/archive/eighty-percent.jpg"
 video: "/images/archive/eighty-percent.mp4"
 category: "物证"

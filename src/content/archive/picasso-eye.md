@@ -1,5 +1,5 @@
 ---
-title: "INTJ物证｜毕加索之眼毕加索也是写实派"
+title: "毕加索之眼毕加索也是写实派"
 image: "/images/archive/picasso-eye.jpg"
 video: "/images/archive/picasso-eye.mp4"
 category: "物证"

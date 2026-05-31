@@ -1,5 +1,5 @@
 ---
-title: "INTJ失控｜被迫社交"
+title: "被迫社交"
 image: "/images/archive/forced-social.jpg"
 video: "/images/archive/forced-social.mp4"
 category: "失控"
