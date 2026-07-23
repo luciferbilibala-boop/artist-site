@@ -49,6 +49,21 @@ const imageAlt = (filename: string, fallback: string) =>
       </figure>
     </header>
 
+    <div class="editorial-download">
+      <a
+        href={`${base}/downloads/hydon-bai-the-brittle-thorn-editorial-feature.pdf`}
+        class="editorial-download-link"
+        download
+      >
+        <span>Download Editorial Feature</span>
+        <span>下载艺术期刊 PDF</span>
+      </a>
+      <div class="editorial-download-meta">
+        <span>18 pages</span>
+        <span>The Brittle Thorn / Hydon BAI / 2025</span>
+      </div>
+    </div>
+
     <div class="series-index" aria-label="Series themes">
       <span>Vanitas / 虚空派</span>
       <span>Domestic Order / 日常秩序</span>
@@ -315,6 +330,48 @@ const imageAlt = (filename: string, fallback: string) =>
     text-align: right;
     text-transform: uppercase;
     letter-spacing: 0.1em;
+    color: var(--thorn-muted);
+  }
+
+  .editorial-download {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem 2rem;
+    margin-top: var(--spacing-lg);
+    padding: 1.2rem 0;
+    border-top: 1px solid var(--thorn-red);
+    border-bottom: 1px solid var(--thorn-red);
+    font-family: var(--font-sans);
+  }
+
+  .editorial-download-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.9rem 1.1rem;
+    border: 1px solid var(--thorn-ink);
+    font-size: 0.6875rem;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+  }
+
+  .editorial-download-link span + span {
+    color: var(--thorn-muted);
+    text-transform: none;
+    letter-spacing: 0.05em;
+  }
+
+  .editorial-download-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.4rem 1rem;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
     color: var(--thorn-muted);
   }
 
@@ -619,6 +676,20 @@ const imageAlt = (filename: string, fallback: string) =>
 
     .hero-art img {
       max-height: none;
+    }
+
+    .editorial-download {
+      align-items: stretch;
+      flex-direction: column;
+    }
+
+    .editorial-download-link {
+      justify-content: center;
+      width: 100%;
+    }
+
+    .editorial-download-meta {
+      justify-content: flex-start;
     }
 
     .series-index {
