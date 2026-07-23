@@ -6,7 +6,7 @@ import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
   const works = await getCollection('works');
-  const bespokePages = new Set(['nobody', 'post-sacred', 'promised-land', 'absence']);
+  const bespokePages = new Set(['brittle-thorn', 'nobody', 'post-sacred', 'promised-land', 'absence']);
   return works
     .filter(work => !bespokePages.has(work.id.replace(/\.md$/, '')))
     .map(work => ({

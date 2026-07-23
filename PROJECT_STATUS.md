@@ -36,15 +36,15 @@ src/
 │   ├── about.astro        # About 页面
 │   ├── method.astro       # Hydon BAI Method（核心方法论页）
 │   ├── contact.astro      # 联系方式
-│   ├── works/             # 作品系列页（nobody/post-sacred/promised-land/sculpture/other）
+│   ├── works/             # 作品系列页（brittle-thorn/nobody/post-sacred/promised-land/absence/sculpture/other）
 │   ├── notes/             # 笔记/文章（ai-images/louvre-40-minutes/on-surface）
-│   ├── studio/            # 工作室作品（可售）
+│   ├── studio/            # 工作室作品（可售，7件指针条目）
 │   └── archive/           # INTJ Archive（Live Photo 卡片墙）
 ├── content/               # Markdown 内容，通过 Content Collections 管理
 │   ├── config.ts          # Schema 定义
-│   ├── works/             # 5个作品系列
+│   ├── works/             # 7个作品系列
 │   ├── notes/             # 3篇笔记
-│   ├── studio/            # 3件工作室作品
+│   ├── studio/            # 7件工作室作品
 │   └── archive/           # 12条 INTJ Archive 条目
 ├── styles/
 │   └── global.css         # 全局样式变量与基础样式
@@ -59,9 +59,9 @@ src/
 - **About** — 内容已填充
 - **Method** — 内容完整，5张 Process 步骤图已就位
 - **Contact** — 功能完整
-- **Works（系列页）** — 5个系列页 + 列表页，结构完成，图片大部分为占位符
+- **Works（系列页）** — 7个系列入口；徒花棘/NOBODY/Promised Land/POST-SACRED/ASSENZA 已完成真实内容，Sculpture/Other 为占位
 - **Notes** — 3篇文章，结构完成
-- **Studio** — 3件作品，结构完成
+- **Studio** — 7件指针作品，结构完成；徒花棘后三件为 Available
 - **INTJ Archive** — **今天刚完成的核心功能**：
   - 12条条目，分三类：秩序 / 物证 / 失控
   - 支持 Live Photo：桌面 hover 播放短视频，移动端点击 Play/Pause

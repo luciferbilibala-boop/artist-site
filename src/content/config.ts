@@ -82,6 +82,7 @@ const studio = defineCollection({
     sourceSeries: z.string(),
     sourceWork: z.string(),
     sourceImage: z.string(),
+    order: z.number().optional(),
     availability: z.enum(['Available', 'Private Collection']),
     signature: z.string().optional(),
     certificate: z.boolean().optional(),

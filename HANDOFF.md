@@ -26,9 +26,9 @@ src/
 │   ├── method.astro          Method 主页（5步流程 + Read Full Essay入口）
 │   ├── method/essay.astro    完整研究文章
 │   ├── contact.astro         联系方式
-│   ├── works/                5个系列（nobody/post-sacred/promised-land/sculpture/other）
+│   ├── works/                7个系列（brittle-thorn/nobody/post-sacred/promised-land/absence/sculpture/other）
 │   ├── notes/                3篇笔记
-│   ├── studio/               3件工作室作品
+│   ├── studio/               7件工作室作品
 │   └── archive/index.astro   INTJ Archive（Live Photo卡片墙）
 ├── content/                  所有 Markdown 内容
 │   └── config.ts             Schema 定义
@@ -42,9 +42,9 @@ src/
 | Method 主页 | 完成：5张 Process 图就位，底部有 Read Full Essay 链接 |
 | Method Essay | 完成：中英双语研究文章，5章节 + Manifesto |
 | INTJ Archive | 完成：12条 Live Photo 条目，桌面 hover 播放，移动端点击 Play/Pause |
-| Works 系列 | NOBODY/Promised Land/POST-SACRED 完成 L1-3，Sculpture/Other 占位 |
+| Works 系列 | 徒花棘/NOBODY/Promised Land/POST-SACRED/ASSENZA 完成 L1-3，Sculpture/Other 占位 |
 | Notes | 3篇占位，需替换内容 |
-| Studio | 完成：3 件解耦指针条目，引用 Works 数据 + 销售字段 |
+| Studio | 完成：7 件解耦指针条目；徒花棘首件已售不进入 Studio，后三件 Available |
 | About | 完成 |
 
 ## INTJ Archive 技术细节
@@ -98,6 +98,7 @@ year: "[Creation year]"
 
 | 系列 | Markdown | 模板动态 alt | 状态 |
 |------|----------|-------------|------|
+| 徒花棘 | `brittle-thorn.md` — 4 works, full L1-3 | `brittle-thorn.astro` — imageAlt() | 完成 |
 | NOBODY | `nobody.md` — 9 works, full L1-3 | `nobody.astro` — imageAlt() | 完成 |
 | Promised Land | `promised-land.md` — 3 works, full L1-3 | `promised-land.astro` — imageAlt() | 完成 |
 | POST-SACRED | `post-sacred.md` — 4 works, full L1-3 | `post-sacred.astro` — imageAlt() | 完成 |
@@ -138,6 +139,7 @@ year: "[Creation year]"
 sourceSeries: "<series-slug>"
 sourceWork: "<stable-id-from-works>"
 sourceImage: "<filename>.jpg"
+order: 1
 availability: "Available" | "Private Collection"
 signature: "<signature details>"
 certificate: true | false

@@ -22,6 +22,7 @@ const resolved = studioEntries.map(entry => {
   const title = artwork?.caption?.split(',')[0]?.trim() || data.sourceWork;
   return {
     slug: entry.id.replace(/\.md$/, ''),
+    order: data.order,
     sourceImage: data.sourceImage,
     title,
     seriesName: series?.data.title || data.sourceSeries,
@@ -37,7 +38,7 @@ const resolved = studioEntries.map(entry => {
     inquiryLink: withBase(data.inquiryLink),
     imagePath: series ? `${base}/images/works/${data.sourceSeries}/${data.sourceImage}` : '',
   };
-});
+}).sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
 ---
 
 <Layout title="Studio" description="Selected works currently available directly from the artist's studio.">

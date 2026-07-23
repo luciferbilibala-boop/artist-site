@@ -19,7 +19,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           <div class="series-image-wrap">
             <img
               src={`${base}${work.data.coverImage}`}
-              alt={work.data.title}
+              alt={work.data.coverAltText || work.data.title}
               loading="lazy"
               decoding="async"
             />
