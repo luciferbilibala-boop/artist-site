@@ -98,7 +98,7 @@ year: "[Creation year]"
 
 | 系列 | Markdown | 模板动态 alt | 状态 |
 |------|----------|-------------|------|
-| 徒花棘 | `brittle-thorn.md` — 4 works, full L1-3 | `brittle-thorn.astro` — imageAlt() + 18-page editorial PDF | 完成 |
+| 徒花棘 | `brittle-thorn.md` — 4 works, full L1-3 | `brittle-thorn.astro` — imageAlt() + 18-page series booklet PDF | 完成 |
 | NOBODY | `nobody.md` — 9 works, full L1-3 | `nobody.astro` — imageAlt() | 完成 |
 | Promised Land | `promised-land.md` — 3 works, full L1-3 | `promised-land.astro` — imageAlt() | 完成 |
 | POST-SACRED | `post-sacred.md` — 4 works, full L1-3 | `post-sacred.astro` — imageAlt() | 完成 |

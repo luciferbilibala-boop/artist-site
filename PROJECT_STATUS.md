@@ -59,7 +59,7 @@ src/
 - **About** — 内容已填充
 - **Method** — 内容完整，5张 Process 步骤图已就位
 - **Contact** — 功能完整
-- **Works（系列页）** — 7个系列入口；徒花棘/NOBODY/Promised Land/POST-SACRED/ASSENZA 已完成真实内容，Sculpture/Other 为占位；徒花棘含 18 页艺术期刊 PDF 下载
+- **Works（系列页）** — 7个系列入口；徒花棘/NOBODY/Promised Land/POST-SACRED/ASSENZA 已完成真实内容，Sculpture/Other 为占位；徒花棘含 18 页系列图文册 PDF 下载
 - **Notes** — 3篇文章，结构完成
 - **Studio** — 7件指针作品，结构完成；徒花棘后三件为 Available
 - **INTJ Archive** — **今天刚完成的核心功能**：
