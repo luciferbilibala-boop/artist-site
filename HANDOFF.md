@@ -5,7 +5,7 @@ Astro v5.18，纯 CSS，Content Collections (Markdown)。部署在 GitHub Pages�
 
 ## 当前发布与协作状态
 
-- 本地项目路径：`/Users/yunshulucky/Desktop/AI_WorkSpace/artist-site`
+- 本地项目路径：`/Users/yunshulucky/Desktop/AI_WorkSpace/Hydon BAI/artist-site`
 - GitHub 仓库：`https://github.com/luciferbilibala-boop/artist-site`
 - 正式域名：`https://hydonbai.art`
 - GitHub Pages 使用 `.github/workflows/deploy.yml` 自动部署，推送到 `main` 后自动构建并发布。
@@ -15,8 +15,18 @@ Astro v5.18，纯 CSS，Content Collections (Markdown)。部署在 GitHub Pages�
   - `public/robots.txt` 的 sitemap 必须指向 `https://hydonbai.art/sitemap-index.xml`
 - 每次内容或代码修改后，先运行 `npm run build`；通过后再 `git add`、`git commit`、`git push`。
 
+## 本地资料与Git边界
+
+- 所有 Hydon BAI 项目统一放在 `AI_WorkSpace/Hydon BAI/` 总目录内。
+- `../内容发布/` 保存作品母图、原始资料、出版最终版、社交媒体PNG和Archive原始输入。
+- `artist-site/` 是独立Git仓库；`内容发布/` 位于仓库之外，不会上传GitHub或进入网站构建。
+- `src/`、`public/` 和被Git跟踪的 `docs/` 是网站发布包。
+- 完整LLM文档：`docs/artist-site-complete-documentation.md`。
+- 不再在桌面同级或Downloads建立长期艺术家资料目录；临时文件确认后应归档或删除。
+
 ## 目录结构
 ```
+docs/                        协作文档与网站发布清单
 src/
 ├── components/   Nav / Footer / ImageViewer
 ├── layouts/      Base.astro（HTML shell）

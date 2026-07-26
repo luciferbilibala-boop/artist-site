@@ -3,3 +3,9 @@ dist/
 .astro/
 .DS_Store
 npm-debug.log*
+
+# Temporary intake/review locations must not enter the repository.
+incoming-archive/
+archive图已处理/
+_quarantine/
+archive-photo-review-temp/
