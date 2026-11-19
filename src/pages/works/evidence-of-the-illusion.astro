@@ -1,0 +1,312 @@
+---
+import Layout from '../../layouts/Base.astro';
+import JsonLd from '../../components/JsonLd.astro';
+import { getCollection } from 'astro:content';
+
+const works = await getCollection('works');
+const series = works.find(w => w.id.endsWith('evidence-of-the-illusion.md'));
+if (!series) throw new Error('Evidence of the Illusion series not found');
+const { data } = series;
+const { Content } = await series.render();
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<Layout title="幻觉的证据 — Works" description={data.description}>
+  <JsonLd slot="head" data={data} />
+  <main class="reader">
+    <a href={`${base}/works`} class="reader-back">&larr; Works</a>
+    <section class="reader-opening">
+      <p class="reader-series-name">{data.subtitle}</p>
+      <h1 class="reader-title">{data.title}</h1>
+    </section>
+    <section class="reader-preface series-preface">
+      <Content />
+    </section>
+    <div class="reader-rule"></div>
+    {data.images?.map(image => (
+      <section class="reader-work">
+        <div class="work-image">
+          <img src={`${base}${image.src}`} alt={image.altText || image.caption || ''} loading="lazy" decoding="async" />
+        </div>
+        <p class="work-title">{image.caption?.split(',')[0].trim()}</p>
+        <p class="work-meta">{image.year}, 独幅版画, {image.dimensions}</p>
+      </section>
+    ))}
+    <div class="reader-end"></div>
+  </main>
+</Layout>
+
+<style>
+  .reader {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: calc(var(--spacing-xl) + 2rem) var(--spacing-md) var(--spacing-xl);
+    font-family: var(--font-serif);
+  }
+
+  .reader-back {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+    display: inline-block;
+    margin-bottom: var(--spacing-md);
+  }
+
+  /* Opening */
+  .reader-opening {
+    margin-bottom: calc(var(--spacing-xl) + 2rem);
+  }
+
+  .reader-series-name {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .reader-title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    margin-bottom: var(--spacing-md);
+    font-family: var(--font-serif);
+    color: var(--color-text);
+  }
+
+  .reader-core {
+    max-width: 680px;
+    font-size: 1rem;
+    line-height: 1.9;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .reader-opening-img {
+    margin: var(--spacing-md) calc(-1 * var(--spacing-md)) 0;
+  }
+
+  .reader-opening-img img {
+    width: 100%;
+    display: block;
+    background: #eaeaea;
+  }
+
+  /* About notes */
+  .reader-notes {
+    max-width: 680px;
+    margin: 0 auto calc(var(--spacing-xl) + 2rem);
+    border-left: 1px solid var(--color-border);
+    padding: var(--spacing-xs) 0 var(--spacing-xs) var(--spacing-lg);
+  }
+
+  .notes-heading {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-sm);
+    font-weight: 400;
+  }
+
+  .notes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .notes-list span {
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+  }
+
+  /* Preface */
+  .reader-preface {
+    max-width: 680px;
+    margin: 0 auto var(--spacing-xl);
+  }
+
+  .preface-heading {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-md);
+    font-weight: 400;
+  }
+
+  .reader-preface-cn {
+    font-size: 1rem;
+    line-height: 1.95;
+    letter-spacing: 0.03em;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .reader-preface-cn p {
+    margin-bottom: var(--spacing-sm);
+    text-indent: 2em;
+  }
+
+  .reader-preface-cn p:first-child {
+    text-indent: 0;
+  }
+
+  .reader-preface-en {
+    font-size: 0.8125rem;
+    line-height: 1.85;
+    letter-spacing: 0.02em;
+    color: var(--color-text-muted);
+  }
+
+  .reader-preface-en p {
+    margin-bottom: 0.65rem;
+  }
+
+  /* Works */
+  .reader-work {
+    margin-bottom: calc(var(--spacing-xl) + 2rem);
+  }
+
+  .reader-work:last-of-type {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .work-image {
+    margin: 0 calc(-1 * var(--spacing-md)) var(--spacing-lg);
+  }
+
+  .work-image img {
+    width: 100%;
+    display: block;
+    background: #eaeaea;
+  }
+
+  .work-title {
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    letter-spacing: 0.04em;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-xs);
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 400;
+  }
+
+  .work-title-en {
+    font-weight: 300;
+    opacity: 0.45;
+    font-size: 0.9375rem;
+  }
+
+  .work-meta {
+    max-width: 680px;
+    margin: 0 auto var(--spacing-md);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.04em;
+    opacity: 0.6;
+  }
+
+  .work-text {
+    max-width: 680px;
+    margin: 0 auto;
+    font-size: 1rem;
+    line-height: 1.9;
+    letter-spacing: 0.03em;
+    color: var(--color-text);
+  }
+
+  .work-text p {
+    margin-bottom: var(--spacing-sm);
+    text-indent: 2em;
+  }
+
+  .work-text p:first-child {
+    text-indent: 0;
+  }
+
+  /* Dividers */
+  .reader-rule {
+    max-width: 680px;
+    margin: var(--spacing-lg) auto;
+    height: 1px;
+    background: var(--color-border);
+    opacity: 0.4;
+  }
+
+  .reader-end {
+    max-width: 680px;
+    margin: calc(var(--spacing-xl) + 2rem) auto 0;
+    text-align: center;
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .reader {
+      padding: calc(var(--spacing-lg) + 3rem) var(--spacing-sm) var(--spacing-lg);
+    }
+
+    .reader-opening {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .reader-title {
+      font-size: clamp(2rem, 8vw, 2.75rem);
+    }
+
+    .reader-opening-img,
+    .work-image {
+      margin-left: calc(-1 * var(--spacing-sm));
+      margin-right: calc(-1 * var(--spacing-sm));
+    }
+
+    .reader-preface,
+    .reader-notes,
+    .work-text,
+    .reader-rule,
+    .work-title,
+    .work-meta {
+      max-width: 100%;
+    }
+
+    .reader-notes {
+      padding-left: var(--spacing-md);
+    }
+
+    .work-title {
+      font-size: 1rem;
+    }
+
+    .work-text,
+    .reader-preface-cn {
+      font-size: 0.9375rem;
+    }
+  }
+
+  .series-preface :global(h2), .series-preface :global(h3) {
+    font-family: var(--font-sans); font-size: 0.6875rem; font-weight: 400;
+    text-transform: uppercase; letter-spacing: 0.16em; color: var(--color-text-muted);
+    margin-bottom: var(--spacing-md);
+  }
+  .series-preface :global(h3) { margin-top: var(--spacing-lg); }
+  .series-preface :global(p) {
+    font-family: var(--font-serif); font-size: 1rem; line-height: 1.95;
+    letter-spacing: 0.03em; color: var(--color-text); margin-bottom: var(--spacing-sm);
+  }
+  .series-preface :global(h3:last-of-type ~ p) {
+    font-size: 0.8125rem; line-height: 1.85; letter-spacing: 0.02em; color: var(--color-text-muted);
+  }
+  .work-image img { max-height: 75vh; width: auto; max-width: 100%; margin: 0 auto; object-fit: contain; }
+  @media (max-width: 768px) { .series-preface :global(p) { font-size: 0.9375rem; } }
+</style>
