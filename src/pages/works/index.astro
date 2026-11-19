@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 
-const works = await getCollection('works', ({ data }) => data);
+const works = await getCollection('works', ({ id }) => !['sculpture', 'other'].includes(id.replace(/\.md$/, '')));
 works.sort((a, b) => a.data.order - b.data.order);
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
