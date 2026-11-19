@@ -88,7 +88,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   }
 
   .series-image-contain img {
-    object-fit: contain;
+    object-fit: cover;
+    object-position: center 37%;
   }
 
   .series-card:hover .series-image-contain img {
