@@ -2,8 +2,8 @@
 title: "幻觉的证据"
 subtitle: "Neo-Cthulhu: Evidence of the Illusion"
 description: "Hydon BAI’s monotype series Evidence of the Illusion explores how civilizations interpret the unknown through familiar frames of reference."
-coverImage: "/images/works/evidence-of-the-illusion/work-01.jpg"
-coverAltText: "吊灯，2018，独幅版画"
+coverImage: "/images/works/evidence-of-the-illusion/work-10.jpg"
+coverAltText: "过了桥才看得见的路标，2018，独幅版画：一只展开双翼的鸟位于十字形路标前。"
 order: 6
 category: "monotype"
 images:
